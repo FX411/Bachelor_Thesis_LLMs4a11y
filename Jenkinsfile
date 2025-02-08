@@ -22,7 +22,7 @@ pipeline {
     stage('Python Hexerei') {
         steps {
             script {
-                def output = sh(script: 'python3 pythonhexerei.py', returnStdout: true).trim()
+                def output = sh(script: 'python pythonhexerei.py', returnStdout: true).trim()
                 echo "Python Output: ${output}"
             }
         }
