@@ -21,7 +21,7 @@ pipeline {
         stage('Python Hexerei') {
             steps {
                 script {
-                    sh "./pythonhexerei.py"
+                    sh "python pythonhexerei.py"
                 }
             }
         }
