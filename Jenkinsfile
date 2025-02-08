@@ -19,16 +19,15 @@ pipeline {
             }
         }
 
-        stage('Python Hexerei') {
-            steps {
-                script {
-                    def result = sh(script: 'python3 pythonhexerei.py', returnStatus: true)
-                    if (result != 0) {
-                        error("Fehler beim Ändern des <h1>-Tags!")
-                        }
-                }
+    stage('Python Hexerei') {
+        steps {
+            script {
+                def output = sh(script: 'python3 pythonhexerei.py', returnStdout: true).trim()
+                echo "Python Output: ${output}"
             }
         }
+    }
+
 
         stage('Build Docker Image') {
             steps {
