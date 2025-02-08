@@ -8,12 +8,20 @@ pipeline {
     }
 
     stages {
-                stage('Git Checkout') {
+        stage('Git Checkout') {
             steps {
                 script {
                     git branch: 'main',
                         credentialsId: 'ssh',
                         url: 'git@github.com:FX411/jenkins-tests.git'
+                }
+            }
+        }
+
+        stage('Python Hexerei') {
+            steps {
+                script {
+                    sh "./pythonhexerei.py"
                 }
             }
         }
