@@ -18,12 +18,19 @@ pipeline {
                 }
             }
         }
+        
+    stage('Fix Permissions') {
+        steps {
+            script {
+                sh 'chmod +x pythonhexerei.py'
+            }
+        }
+    }
 
     stage('Python Hexerei') {
         steps {
             script {
-                def output = sh(script: 'python pythonhexerei.py', returnStdout: true).trim()
-                echo "Python Output: ${output}"
+                sh 'python pythonhexerei.py'
             }
         }
     }
