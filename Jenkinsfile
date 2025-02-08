@@ -5,7 +5,6 @@ pipeline {
         IMAGE_NAME = "test-website"
         IMAGE_TAG = "latest"
         CONTAINER_NAME = "test-website"
-        PATH= "/c/Users/Felix/AppData/Local/Programs/Python/Python310/Scripts:/c/Users/Felix/AppData/Local/Programs/Python/Python310:"
     }
 
     stages {
@@ -18,7 +17,7 @@ pipeline {
                 }
             }
         }
-        
+
     stage('Check Python Script') {
         steps {
             script {
