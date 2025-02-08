@@ -18,23 +18,21 @@ pipeline {
             }
         }
 
-    stage('Fix Permissions') {
-        steps {
-            script {
-                sh 'chmod +x pythonhexerei.py'
+        stage('Fix Permissions') {
+            steps {
+                script {
+                    sh 'chmod +x pythonhexerei.py'
+                }
             }
         }
-    }
 
-    stage('Python Hexerei') {
-        steps {
-            script {
-                sh '/opt/miniconda3/bin/python3 pythonhexerei.py'
+        stage('Python Hexerei') {
+            steps {
+                script {
+                    sh '/opt/miniconda3/bin/python3 pythonhexerei.py'
+                }
             }
         }
-    }
-
-
         stage('Build Docker Image') {
             steps {
                 script {

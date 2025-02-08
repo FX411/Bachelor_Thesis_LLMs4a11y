@@ -38,5 +38,5 @@ if __name__ == "__main__":
     except Exception as e:
         print("Cannot install packages")
         sys.exit()
-    exit_code = modify_h1_tag('public/index.html', 'Neuer H1-Inhalt')
+    exit_code = modify_h1_tag('public/index.html', 'HEX HEX!')
     sys.exit(exit_code)
