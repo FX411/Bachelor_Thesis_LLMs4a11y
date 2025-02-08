@@ -22,7 +22,10 @@ pipeline {
         stage('Python Hexerei') {
             steps {
                 script {
-                    sh 'python3 pythonhexerei.py'
+                    def result = sh(script: 'python3 pythonhexerei.py', returnStatus: true)
+                    if (result != 0) {
+                        error("Fehler beim Ändern des <h1>-Tags!")
+                        }
                 }
             }
         }
