@@ -8,9 +8,13 @@ pipeline {
     }
 
     stages {
-        stage('Checkout Code') {
+                stage('Git Checkout') {
             steps {
-                git 'https://github.com/FX411/jenkins-tests.git'
+                script {
+                    git branch: 'main',
+                        credentialsId: 'ssh',
+                        url: 'https://github.com/FX411/jenkins-tests.git'
+                }
             }
         }
 
