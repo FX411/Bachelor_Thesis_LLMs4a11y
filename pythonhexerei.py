@@ -29,6 +29,7 @@ def modify_h1_tag(file_path, new_text):
 # Beispielaufruf für Jenkins
 if __name__ == "__main__":
     import sys
+    import subprocess
     
     def install(package):
         subprocess.check_call([sys.executable, "-m", "pip", "install", package])
