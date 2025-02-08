@@ -1,39 +1,41 @@
 #!/bin/usr/env python
+from bs4 import BeautifulSoup
 
 # HTML-Datei öffnen und einlesen
-def modify_html(file_path, new_text, htmltag):
-    with open(file_path, 'r', encoding='utf-8') as file:
-        soup = BeautifulSoup(file, 'html.parser')
-    
-    # Tag finden und Inhalt ändern
-    tag = soup.find(htmltag)
-    if tag:
-        tag.string = new_text
-    else:
-        print("Kein " + htmltag + "-Tag gefunden!")
-        return
-    
-    # Geänderten Inhalt zurück in die Datei schreiben
-    with open(file_path, 'w', encoding='utf-8') as file:
-        file.write(str(soup))
-    
-    print(htmltag + "-Tag erfolgreich geändert!")
+def modify_h1_tag(file_path, new_text):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            soup = BeautifulSoup(file, 'html.parser')
 
+        # <h1>-Tag finden und Inhalt ändern
+        h1_tag = soup.find('h1')
+        if h1_tag:
+            h1_tag.string = new_text
+        else:
+            print("Kein <h1>-Tag gefunden!")
+            return 1  # Fehlercode zurückgeben, damit Jenkins es erkennt
+
+        # Geänderten Inhalt zurück in die Datei schreiben
+        with open(file_path, 'w', encoding='utf-8') as file:
+            file.write(str(soup))
+
+        print("<h1>-Tag erfolgreich geändert!")
+        return 0  # Erfolgscode zurückgeben
+
+    except Exception as e:
+        print(f"Fehler beim Bearbeiten der Datei: {e}")
+        return 1  # Fehlercode zurückgeben
+
+# Beispielaufruf für Jenkins
 if __name__ == "__main__":
-
-    import subprocess
     import sys
-    import os
-
+    
     def install(package):
         subprocess.check_call([sys.executable, "-m", "pip", "install", package])
     try:
         install("beautifulsoup4")
-    except:
-        exit() 
-
-    from bs4 import BeautifulSoup
-
-    datei_pfad = 'public/index.html' 
-    neuer_text = 'HEX HEX'
-    modify_html(datei_pfad, neuer_text, "h1")
+    except Exception as e:
+        print("Cannot install packages")
+        sys.exit()
+    exit_code = modify_h1_tag('public/index.html', 'Neuer H1-Inhalt')
+    sys.exit(exit_code)
