@@ -19,6 +19,15 @@ pipeline {
             }
         }
         
+    stage('Check Python Script') {
+        steps {
+            script {
+                sh 'ls -lah || echo "❌ Arbeitsverzeichnis ist leer!"'
+                sh '[ -f pythonhexerei.py ] && echo "✅ Skript gefunden" || echo "❌ pythonhexerei.py fehlt!"'
+            }
+        }
+    }
+    
     stage('Fix Permissions') {
         steps {
             script {
