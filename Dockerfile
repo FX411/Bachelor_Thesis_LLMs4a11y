@@ -2,7 +2,7 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-COPY data/website/package.json package-lock.json ./
+COPY data/website/package.json ./
 RUN npm install
 
 COPY . .
