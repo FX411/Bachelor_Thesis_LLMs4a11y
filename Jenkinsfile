@@ -18,15 +18,6 @@ pipeline {
             }
         }
 
-    stage('Check Python Script') {
-        steps {
-            script {
-                sh 'ls -lah || echo "❌ Arbeitsverzeichnis ist leer!"'
-                sh '[ -f pythonhexerei.py ] && echo "✅ Skript gefunden" || echo "❌ pythonhexerei.py fehlt!"'
-            }
-        }
-    }
-    
     stage('Fix Permissions') {
         steps {
             script {
@@ -38,7 +29,7 @@ pipeline {
     stage('Python Hexerei') {
         steps {
             script {
-                sh 'python pythonhexerei.py'
+                sh '/opt/miniconda3/bin/python3 pythonhexerei.py'
             }
         }
     }

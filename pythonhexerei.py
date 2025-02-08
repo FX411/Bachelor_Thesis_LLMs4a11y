@@ -1,4 +1,4 @@
-#!/bin/usr/env python
+#!/bin/usr/env python3
 from bs4 import BeautifulSoup
 
 # HTML-Datei öffnen und einlesen
@@ -30,7 +30,7 @@ def modify_h1_tag(file_path, new_text):
 if __name__ == "__main__":
     import sys
     import subprocess
-    
+
     def install(package):
         subprocess.check_call([sys.executable, "-m", "pip", "install", package])
     try:
