@@ -1,7 +1,7 @@
 FROM node:18
 
 # Kopiere den Test-Code
-COPY ./tests /app/tests
+COPY /tests /app/tests
 
 WORKDIR /app
 
