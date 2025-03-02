@@ -3,10 +3,10 @@ FROM node:18
 WORKDIR /app
 
 # Installiere Abhängigkeiten
-COPY  accessibility.test.package.json ./package.json
+COPY accessibility.test.package.json ./package.json
 RUN npm install --only=dev
 
 # Kopiere den Test-Code
-COPY tests/ tests/
+COPY ./tests ./tests
 
 CMD ["npm", "test"]
