@@ -1,12 +1,38 @@
 FROM node:18
 
-# Kopiere den Test-Code
-COPY ${PWD}/tests /app/tests
-
 WORKDIR /app
 
-# Installiere Abhängigkeiten
+# Systemabhängigkeiten für Puppeteer installieren
+RUN apt-get update && apt-get install -y \
+    libnss3 \
+    libatk1.0-0 \
+    libx11-xcb1 \
+    libxcomposite1 \
+    libxcursor1 \
+    libxdamage1 \
+    libxfixes3 \
+    libxrandr2 \
+    libgbm-dev \
+    libasound2 \
+    libpango-1.0-0 \
+    libpangocairo-1.0-0 \
+    libatk1.0-0 \
+    libcups2 \
+    libnss3 \
+    libxss1 \
+    libgconf-2-4 \
+    fonts-liberation \
+    lsb-release \
+    xdg-utils \
+    && rm -rf /var/lib/apt/lists/*
+
+# Kopiere die Package-Datei
 COPY accessibility.test.package.json ./package.json
-RUN npm install --only=dev
+
+# Installiere nur Dev-Abhängigkeiten
+RUN npm install --omit=optional --omit=peer
+
+# Kopiere den Test-Code
+COPY ./tests /app/tests
 
 CMD ["npm", "test"]

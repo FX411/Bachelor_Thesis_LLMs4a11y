@@ -8,7 +8,10 @@ describe("Accessibility Tests", () => {
   let page;
 
   beforeAll(async () => {
-    browser = await puppeteer.launch({ args: ["--no-sandbox"] });
+    browser = await puppeteer.launch({
+        headless: "new",
+        args: ["--no-sandbox", "--disable-gpu", "--disable-dev-shm-usage"]
+    });
     page = await browser.newPage();
   });
 
