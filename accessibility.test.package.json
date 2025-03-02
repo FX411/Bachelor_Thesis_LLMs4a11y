@@ -1,0 +1,24 @@
+{
+    "name": "accessibility-tests",
+    "version": "1.0.0",
+    "description": "Automatisierte Barrierefreiheitstests mit jest-axe und Puppeteer",
+    "main": "index.js",
+    "scripts": {
+      "test": "jest --ci --reporters=default --reporters=jest-junit"
+    },
+    "dependencies": {},
+    "devDependencies": {
+      "jest": "^29.0.0",
+      "jest-axe": "^7.0.0",
+      "puppeteer": "^21.0.0",
+      "jest-junit": "^15.0.0"
+    },
+    "jest": {
+      "reporters": ["default", "jest-junit"]
+    },
+    "jest-junit": {
+      "outputDirectory": "reports",
+      "outputName": "jest-report.xml"
+    }
+  }
+  

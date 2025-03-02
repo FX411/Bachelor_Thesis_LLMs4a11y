@@ -5,6 +5,8 @@ pipeline {
         IMAGE_NAME = "test-website"
         IMAGE_TAG = "latest"
         CONTAINER_NAME = "test-website"
+        TEST_IMAGE_NAME = "accessibility-tests"
+        NETWORK_NAME = "test-network"
     }
 
     stages {
@@ -18,43 +20,72 @@ pipeline {
             }
         }
 
-        stage('Fix Permissions') {
+        stage('Setup Environment') {
             steps {
                 script {
-                    sh 'chmod +x pythonhexerei.py'
+                    sh '''
+                        echo "Setze Rechte für Python-Skript..."
+                        chmod +x pythonhexerei.py
+                        
+                        echo "Führe Python-Skript aus..."
+                        /opt/miniconda3/bin/python3 pythonhexerei.py
+                    '''
                 }
             }
         }
 
-        stage('Python Hexerei') {
+        stage('Build and Run Website Container') {
             steps {
                 script {
-                    sh '/opt/miniconda3/bin/python3 pythonhexerei.py'
-                }
-            }
-        }
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+                    sh '''
+                        echo "Baue Docker-Image für die Website..."
+                        docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
+
+                        echo "Erstelle Docker-Netzwerk (falls nicht vorhanden)..."
+                        docker network create ${NETWORK_NAME} || true
+
+                        echo "Stoppe und entferne alten Website-Container..."
+                        docker stop ${CONTAINER_NAME} || true
+                        docker rm ${CONTAINER_NAME} || true
+
+                        echo "Starte neuen Website-Container..."
+                        docker run -d --network=${NETWORK_NAME} -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}
+
+                        echo "Warte auf Server-Start..."
+                        sleep 10
+                    '''
                 }
             }
         }
 
-        stage('Remove Old Container') {
+        stage('Build and Run Test Container') {
             steps {
                 script {
-                    sh "docker stop ${CONTAINER_NAME} || true"
-                    sh "docker rm ${CONTAINER_NAME} || true"
+                    sh '''
+                        echo "Baue Docker-Image für Accessibility-Tests..."
+                        docker build -t ${TEST_IMAGE_NAME} -f Dockerfile.test .
+
+                        echo "Starte Accessibility-Tests..."
+                        docker run --network=${NETWORK_NAME} ${TEST_IMAGE_NAME}
+                    '''
                 }
             }
         }
+    }
 
-        stage('Run New Container') {
-            steps {
-                script {
-                    sh "docker run -d -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}"
-                }
+    post {
+        always {
+            script {
+                sh '''
+                    echo "Stoppe Website-Container..."
+                    docker stop ${CONTAINER_NAME} || true
+
+                    echo "Entferne Website-Container..."
+                    docker rm ${CONTAINER_NAME} || true
+
+                    echo "Entferne Docker-Netzwerk..."
+                    docker network rm ${NETWORK_NAME} || true
+                '''
             }
         }
     }
