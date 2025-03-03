@@ -1,6 +1,5 @@
 #!/bin/usr/env python3
 from bs4 import BeautifulSoup
-import sys
 
 # HTML-Datei öffnen und einlesen
 def modify_h1_tag(file_path, new_text):
@@ -30,6 +29,7 @@ def modify_h1_tag(file_path, new_text):
 # Beispielaufruf für Jenkins
 if __name__ == "__main__":
     import sys
+    import json
     import subprocess
 
     def install(package):
@@ -39,5 +39,10 @@ if __name__ == "__main__":
     except Exception as e:
         print("Cannot install packages")
         sys.exit()
-    exit_code = modify_h1_tag('public/index.html', sys.argv[1])
+    try:
+        with open(sys.argv[1], 'r', encoding='utf-8') as report:
+            exit_code = modify_h1_tag('public/index.html', json.loads(report))
+    except:
+        print(f"Fehler beim Bearbeiten der Datei: " + sys.argv[1])
+        exit_code = 1
     sys.exit(exit_code)
