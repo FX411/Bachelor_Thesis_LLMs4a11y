@@ -78,16 +78,25 @@ pipeline {
             }
         }
 
-        stage('Python transformation') {
+        stage('Python Dependencies') {
             steps {
                 script {
                     sh '''
                         echo "Setze Rechte für Python-Skript..."
-                        chmod +x pythonhexerei.py
+                        chmod +x gemini.py
                         
-                        echo "Führe Python-Skript aus mit dem ersten WCAG-Report..."
-                        /opt/miniconda3/bin/python3 pythonhexerei.py ${REPORTS_DIR}/${FIRST_REPORT}
+                        echo "Installiere Abhängigkeiten..."
+                        /opt/miniconda3/bin/python3 -m pip install google-genai
                     '''
+                }
+            }
+        }
+
+        stage('Python LLM Transformation') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'geminiapi', variable: 'GEMINI_API_KEY')]) {
+                        sh '/opt/miniconda3/bin/python3 gemini.py ${REPORTS_DIR}/${FIRST_REPORT}' }
                 }
             }
         }
