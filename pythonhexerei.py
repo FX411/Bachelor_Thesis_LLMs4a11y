@@ -1,5 +1,6 @@
 #!/bin/usr/env python3
 from bs4 import BeautifulSoup
+import sys
 
 # HTML-Datei öffnen und einlesen
 def modify_h1_tag(file_path, new_text):
@@ -38,5 +39,5 @@ if __name__ == "__main__":
     except Exception as e:
         print("Cannot install packages")
         sys.exit()
-    exit_code = modify_h1_tag('public/index.html', 'HEX HEX!')
+    exit_code = modify_h1_tag('public/index.html', sys.argv[1])
     sys.exit(exit_code)
