@@ -4,10 +4,11 @@ FROM node:18
 # Arbeitsverzeichnis im Container
 WORKDIR /app
 
-# Installiere die fehlenden Bibliotheken für Puppeteer
+# Installiere die fehlenden Bibliotheken für Puppeteer (inkl. libatk-bridge-2.0.so.0)
 RUN apt-get update && apt-get install -y \
     libnss3 \
     libatk1.0-0 \
+    libatk-bridge2.0-0 \
     libx11-xcb1 \
     libxcomposite1 \
     libxcursor1 \
@@ -24,9 +25,12 @@ RUN apt-get update && apt-get install -y \
     fonts-liberation \
     xdg-utils \
     lsb-release \
+    libgtk-3-0 \
+    libxshmfence1 \
+    libgl1-mesa-glx \
     && rm -rf /var/lib/apt/lists/*
 
-# Installiere pa11y-ci
+# Installiere pa11y-ci und Puppeteer
 RUN npm install -g pa11y-ci
 
 # Kopiere die pa11y-Konfiguration
