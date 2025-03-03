@@ -89,7 +89,6 @@ pipeline {
                 '''
             }
             archiveArtifacts artifacts: 'reports/pa11y-report.json', fingerprint: true
-            archiveArtifacts artifacts: 'reports/pa11y-report.html', fingerprint: true
         }
     }
 }
