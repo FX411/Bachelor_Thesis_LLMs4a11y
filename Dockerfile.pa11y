@@ -37,4 +37,4 @@ RUN npm install -g pa11y-ci
 COPY pa11y.config.json /app/pa11y.config.json
 
 # Führe pa11y-ci aus
-CMD ["pa11y-ci", "--config", "/app/pa11y.config.json"]
+CMD ["pa11y-ci", "--config", "/app/pa11y.config.json", "--chrome-launch-args", "--no-sandbox"]
