@@ -7,8 +7,6 @@ pipeline {
         CONTAINER_NAME = "test-website"
         NETWORK_NAME = "test-network"
         REPORTS_DIR = "reports"
-        TRANSFORMED_IMAGE_NAME = "test-website-transformed"
-        TRANSFORMED_CONTAINER_NAME = "test-website-transformed"
         FIRST_REPORT="before_transformation.json"
         SECOND_REPORT="after_transformation.json"
     }
@@ -68,6 +66,18 @@ pipeline {
             }
         }
 
+        stage('Remove website container') {
+            steps {
+                script {
+                    sh '''
+                        echo "Stoppe und entferne Website-Container..."
+                        docker stop ${CONTAINER_NAME} || true
+                        docker rm ${CONTAINER_NAME} || true
+                        '''
+                }
+            }
+        }
+
         stage('Archive First WCAG Report') {
             steps {
                 script {
@@ -95,14 +105,14 @@ pipeline {
                 script {
                     sh '''
                         echo "Baue Docker-Image mit transformiertem Code..."
-                        docker build -t ${TRANSFORMED_IMAGE_NAME}:${IMAGE_TAG} .
+                        docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
 
                         echo "Stoppe und entferne alten transformierten Website-Container..."
-                        docker stop ${TRANSFORMED_CONTAINER_NAME} || true
-                        docker rm ${TRANSFORMED_CONTAINER_NAME} || true
+                        docker stop ${CONTAINER_NAME} || true
+                        docker rm ${CONTAINER_NAME} || true
 
                         echo "Starte neuen transformierten Website-Container..."
-                        docker run -d --network=${NETWORK_NAME} -p 3001:3000 --name ${TRANSFORMED_CONTAINER_NAME} ${TRANSFORMED_IMAGE_NAME}:${IMAGE_TAG}
+                        docker run -d --network=${NETWORK_NAME} -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}
 
                         echo "Warte auf Server-Start..."
                         sleep 10
@@ -130,21 +140,6 @@ pipeline {
                 script {
                     archiveArtifacts artifacts: "${REPORTS_DIR}/${SECOND_REPORT}", fingerprint: true
                 }
-            }
-        }
-    }
-
-    post {
-        always {
-            script {
-                sh '''
-                    echo "Stoppe und entferne alle Website-Container..."
-                    docker stop ${CONTAINER_NAME} || true
-                    docker rm ${CONTAINER_NAME} || true
-
-                    echo "Entferne Docker-Netzwerk..."
-                    docker network rm ${NETWORK_NAME} || true
-                '''
             }
         }
     }
