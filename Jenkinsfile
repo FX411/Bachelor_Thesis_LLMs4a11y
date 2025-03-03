@@ -5,8 +5,6 @@ pipeline {
         IMAGE_NAME = "test-website"
         IMAGE_TAG = "latest"
         CONTAINER_NAME = "test-website"
-        TEST_IMAGE_NAME = "accessibility-tests"
-        NETWORK_NAME = "test-network"
     }
 
     stages {
@@ -20,7 +18,7 @@ pipeline {
             }
         }
 
-        stage('Setup Environment') {
+        stage('Python transformation') {
             steps {
                 script {
                     sh '''
@@ -41,15 +39,12 @@ pipeline {
                         echo "Baue Docker-Image für die Website..."
                         docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
 
-                        echo "Erstelle Docker-Netzwerk (falls nicht vorhanden)..."
-                        docker network create ${NETWORK_NAME} || true
-
                         echo "Stoppe und entferne alten Website-Container..."
                         docker stop ${CONTAINER_NAME} || true
                         docker rm ${CONTAINER_NAME} || true
 
                         echo "Starte neuen Website-Container..."
-                        docker run -d --network=${NETWORK_NAME} -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}
+                        docker run -d -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}
 
                         echo "Warte auf Server-Start..."
                         sleep 10
@@ -58,19 +53,20 @@ pipeline {
             }
         }
 
-        stage('Build and Run Test Container') {
+        stage('Run WCAG Tests with pa11y-ci') {
             steps {
                 script {
                     sh '''
-                        echo "Baue Docker-Image für Accessibility-Tests..."
-                        docker build -t ${TEST_IMAGE_NAME} -f Dockerfile.test .
+                        echo "Baue den pa11y-ci Container..."
+                        docker build -t pa11y-ci-tester -f Dockerfile.pa11y .
 
                         echo "Starte Accessibility-Tests..."
-                        docker run --network=${NETWORK_NAME} ${TEST_IMAGE_NAME}
+                        docker run --rm pa11y-ci-tester
                     '''
                 }
             }
         }
+
     }
 
     post {
@@ -83,8 +79,7 @@ pipeline {
                     echo "Entferne Website-Container..."
                     docker rm ${CONTAINER_NAME} || true
 
-                    echo "Entferne Docker-Netzwerk..."
-                    docker network rm ${NETWORK_NAME} || true
+
                 '''
             }
         }

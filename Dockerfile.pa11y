@@ -1,0 +1,14 @@
+# Basis-Image mit Node.js
+FROM node:18
+
+# Arbeitsverzeichnis im Container
+WORKDIR /app
+
+# Installiere pa11y-ci global
+RUN npm install -g pa11y-ci
+
+# Kopiere die Konfigurationsdatei für pa11y-ci (falls vorhanden)
+COPY pa11y.config.json /app/pa11y.config.json
+
+# Standardbefehl: Führt pa11y-ci aus
+CMD ["pa11y-ci", "--config", "/app/pa11y.config.json"]
