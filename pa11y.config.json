@@ -11,6 +11,11 @@
     ] 
   },
   "urls": [
-    "http://test-website:3000"
+    "http://test-website:3000",
+    "http://test-website:3000/cart.html",
+    "http://test-website:3000/checkout.html",
+    "http://test-website:3000/product1.html",
+    "http://test-website:3000/product2.html",
+    "http://test-website:3000/product3.html"
   ]
 }
