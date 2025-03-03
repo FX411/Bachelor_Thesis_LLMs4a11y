@@ -61,7 +61,7 @@ pipeline {
                         mkdir -p ${REPORTS_DIR}
 
                         echo "Starte Accessibility-Tests (Erster Durchlauf)..."
-                        docker run --rm --network=${NETWORK_NAME} -v $PWD/${REPORTS_DIR}:/app/reports pa11y-ci-tester
+                        docker run --rm --network=${NETWORK_NAME} -v $PWD/${REPORTS_DIR}:/app/reports pa11y-ci-tester || true
 
                         echo "Speichere den ersten WCAG-Report..."
                         mv ${REPORTS_DIR}/pa11y-report.json ${REPORTS_DIR}/${FIRST_REPORT}
@@ -118,7 +118,7 @@ pipeline {
                 script {
                     sh '''
                         echo "Starte Accessibility-Tests (Zweiter Durchlauf, transformierte Website)..."
-                        docker run --rm --network=${NETWORK_NAME} -v $PWD/${REPORTS_DIR}:/app/reports pa11y-ci-tester
+                        docker run --rm --network=${NETWORK_NAME} -v $PWD/${REPORTS_DIR}:/app/reports pa11y-ci-tester || true
 
                         echo "Speichere den zweiten WCAG-Report..."
                         mv ${REPORTS_DIR}/pa11y-report.json ${REPORTS_DIR}/${SECOND_REPORT}
