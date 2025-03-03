@@ -66,18 +66,6 @@ pipeline {
             }
         }
 
-        stage('Remove website container') {
-            steps {
-                script {
-                    sh '''
-                        echo "Stoppe und entferne Website-Container..."
-                        docker stop ${CONTAINER_NAME} || true
-                        docker rm ${CONTAINER_NAME} || true
-                        '''
-                }
-            }
-        }
-
         stage('Archive First WCAG Report') {
             steps {
                 script {
@@ -107,7 +95,7 @@ pipeline {
                         echo "Baue Docker-Image mit transformiertem Code..."
                         docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
 
-                        echo "Stoppe und entferne alten transformierten Website-Container..."
+                        echo "Stoppe und entferne alten Website-Container..."
                         docker stop ${CONTAINER_NAME} || true
                         docker rm ${CONTAINER_NAME} || true
 
