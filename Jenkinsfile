@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "test-website"
+        TRANSFORMED_IMAGE_NAME = "transformed-test-website"
         IMAGE_TAG = "latest"
         CONTAINER_NAME = "test-website"
         NETWORK_NAME = "test-network"
@@ -93,14 +94,14 @@ pipeline {
                 script {
                     sh '''
                         echo "Baue Docker-Image mit transformiertem Code..."
-                        docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
+                        docker build -t ${TRANSFORMED_IMAGE_NAME}:${IMAGE_TAG} .
 
                         echo "Stoppe und entferne alten Website-Container..."
                         docker stop ${CONTAINER_NAME} || true
                         docker rm ${CONTAINER_NAME} || true
 
                         echo "Starte neuen transformierten Website-Container..."
-                        docker run -d --network=${NETWORK_NAME} -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}
+                        docker run -d --network=${NETWORK_NAME} -p 3000:3000 --name ${CONTAINER_NAME} ${TRANSFORMED_IMAGE_NAME}:${IMAGE_TAG}
 
                         echo "Warte auf Server-Start..."
                         sleep 10
