@@ -40,7 +40,7 @@ if __name__ == "__main__":
         print("Cannot install packages")
         sys.exit()
     try:
-        with open(sys.argv[1], 'r', encoding='utf-8') as report:
+        with open("./" + sys.argv[1], 'r', encoding='utf-8') as report:
             exit_code = modify_h1_tag('public/index.html', json.loads(report))
     except:
         print(f"Fehler beim Bearbeiten der Datei: " + sys.argv[1])
