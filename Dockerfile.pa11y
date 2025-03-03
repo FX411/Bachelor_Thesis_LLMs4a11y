@@ -23,4 +23,4 @@ RUN mkdir -p /app/reports
 COPY pa11y.config.json /app/pa11y.config.json
 
 # Standardbefehl: Führt die Accessibility-Tests aus und speichert die Reports
-CMD ["sh", "-c", "pa11y-ci --config /app/pa11y.config.json --output /app/reports/pa11y-report.json && cp /app/reports/pa11y-report.json /app/reports/pa11y-report.html || true"]
+CMD ["sh", "-c", "pa11y-ci -c /app/pa11y.config.json -j"]
