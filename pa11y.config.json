@@ -5,7 +5,9 @@
     "screenCapture": "./screenshots/",
     "chromeLaunchConfig": {
       "args": ["--no-sandbox", "--disable-setuid-sandbox"]
-    }
+    },
+    "reporter": "json",
+    "output": "/app/reports/pa11y-report.json"
   },
   "urls": [
     "http://test-website:3000"

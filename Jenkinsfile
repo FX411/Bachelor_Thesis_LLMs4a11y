@@ -6,6 +6,7 @@ pipeline {
         IMAGE_TAG = "latest"
         CONTAINER_NAME = "test-website"
         NETWORK_NAME = "test-network"
+        REPORTS_DIR = "reports"
     }
 
     stages {
@@ -64,13 +65,15 @@ pipeline {
                         echo "Baue den pa11y-ci Container..."
                         docker build -t pa11y-ci-tester -f Dockerfile.pa11y .
 
+                        echo "Erstelle Reports-Ordner..."
+                        mkdir -p ${REPORTS_DIR}
+
                         echo "Starte Accessibility-Tests..."
-                        docker run --rm --network=${NETWORK_NAME} pa11y-ci-tester
+                        docker run --rm --network=${NETWORK_NAME} -v $PWD/${REPORTS_DIR}:/app/reports pa11y-ci-tester
                     '''
                 }
             }
         }
-
     }
 
     post {
@@ -85,6 +88,8 @@ pipeline {
                     docker network rm ${NETWORK_NAME} || true
                 '''
             }
+            archiveArtifacts artifacts: 'reports/pa11y-report.json', fingerprint: true
+            archiveArtifacts artifacts: 'reports/pa11y-report.html', fingerprint: true
         }
     }
 }
