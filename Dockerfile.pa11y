@@ -1,11 +1,20 @@
-# Basis-Image mit Puppeteer
-FROM buildkite/puppeteer:v1.15.0
+# Basis-Image mit Node.js
+FROM node:18
 
 # Arbeitsverzeichnis im Container
 WORKDIR /app
 
+# Installiere benötigte Bibliotheken für Puppeteer
+RUN apt-get update && apt-get install -y \
+    libnss3 libatk1.0-0 libatk-bridge2.0-0 libx11-xcb1 \
+    libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxrandr2 libgbm-dev \
+    libasound2 libpango-1.0-0 libpangocairo-1.0-0 libcups2 libxss1 \
+    libgconf-2-4 fonts-liberation xdg-utils lsb-release libgtk-3-0 \
+    libxshmfence1 libgl1-mesa-glx \
+    && rm -rf /var/lib/apt/lists/*
+
 # Installiere pa11y-ci und Puppeteer
-RUN npm install --global --unsafe-perm pa11y-ci
+RUN npm install -g puppeteer pa11y-ci
 
 # Erstelle Ordner für Reports
 RUN mkdir -p /app/reports
