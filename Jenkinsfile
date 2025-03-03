@@ -5,6 +5,7 @@ pipeline {
         IMAGE_NAME = "test-website"
         IMAGE_TAG = "latest"
         CONTAINER_NAME = "test-website"
+        NETWORK_NAME = "test-network"
     }
 
     stages {
@@ -36,6 +37,9 @@ pipeline {
             steps {
                 script {
                     sh '''
+                        echo "Erstelle Docker-Netzwerk falls nicht vorhanden..."
+                        docker network create ${NETWORK_NAME} || true
+
                         echo "Baue Docker-Image für die Website..."
                         docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
 
@@ -44,7 +48,7 @@ pipeline {
                         docker rm ${CONTAINER_NAME} || true
 
                         echo "Starte neuen Website-Container..."
-                        docker run -d -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}
+                        docker run -d --network=${NETWORK_NAME} -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}
 
                         echo "Warte auf Server-Start..."
                         sleep 10
@@ -61,7 +65,7 @@ pipeline {
                         docker build -t pa11y-ci-tester -f Dockerfile.pa11y .
 
                         echo "Starte Accessibility-Tests..."
-                        docker run --rm pa11y-ci-tester
+                        docker run --rm --network=${NETWORK_NAME} pa11y-ci-tester
                     '''
                 }
             }
@@ -75,11 +79,10 @@ pipeline {
                 sh '''
                     echo "Stoppe Website-Container..."
                     docker stop ${CONTAINER_NAME} || true
-
-                    echo "Entferne Website-Container..."
                     docker rm ${CONTAINER_NAME} || true
 
-
+                    echo "Entferne Docker-Netzwerk..."
+                    docker network rm ${NETWORK_NAME} || true
                 '''
             }
         }
