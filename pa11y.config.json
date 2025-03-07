@@ -1,21 +1,79 @@
 {
   "defaults": {
-    "standard": "WCAG2AA",
+    "standard": "WCAG2AAA",
     "timeout": 30000,
     "screenCapture": "./screenshots/",
     "chromeLaunchConfig": {
       "args": ["--no-sandbox", "--disable-setuid-sandbox"]
     },
-    "reporters":[
-      ["json", { "fileName": "./reports/pa11y-report.json"}]
-    ] 
+    "reporters": [
+      ["json", { "fileName": "./reports/pa11y-report.json" }],
+      ["html", { "fileName": "./reports/pa11y-report.html" }]
+    ]
   },
   "urls": [
-    "http://test-website:3000",
-    "http://test-website:3000/cart.html",
-    "http://test-website:3000/checkout.html",
-    "http://test-website:3000/product1.html",
-    "http://test-website:3000/product2.html",
-    "http://test-website:3000/product3.html"
+    {
+      "url": "http://test-website:3000",
+      "actions": [
+        "click element .cart-link",
+        "wait for element #cart-items to be visible"
+      ]
+    },
+    {
+      "url": "http://test-website:3000/cart.html",
+      "actions": [
+        "wait for element #cart-items to be visible",
+        "click element button:contains('Zur Kasse')",
+        "wait for path to be /checkout.html"
+      ]
+    },
+    {
+      "url": "http://test-website:3000/checkout.html",
+      "actions": [
+        "wait for element h1:contains('Checkout') to be visible",
+        "set field #name to 'Max Mustermann'",
+        "set field #address to 'Musterstraße 123'",
+        "set field #zip to '12345'",
+        "set field #city to 'Musterstadt'",
+        "set field #card-number to '4111111111111111'",
+        "set field #expiry to '12/25'",
+        "set field #cvv to '123'",
+        "click element button:contains('Bestellung abschließen')",
+        "wait for alert",
+        "dismiss alert"
+      ]
+    },
+    {
+      "url": "http://test-website:3000/product1.html",
+      "actions": [
+        "wait for element .gallery to be visible",
+        "click element img[alt='Produkt 1 Bild 2']",
+        "wait for element #mainImage[src='img/product1_2.webp'] to be visible",
+        "set field #numberInput to 2",
+        "click element button:contains('In den Warenkorb')",
+        "wait for alert",
+        "dismiss alert"
+      ]
+    },
+    {
+      "url": "http://test-website:3000/product2.html",
+      "actions": [
+        "wait for element h1:contains('NES Konsole') to be visible",
+        "set field #numberInput to 1",
+        "click element button:contains('In den Warenkorb')",
+        "wait for alert",
+        "dismiss alert"
+      ]
+    },
+    {
+      "url": "http://test-website:3000/product3.html",
+      "actions": [
+        "wait for element h1:contains('Nintendo Game Boy') to be visible",
+        "set field #numberInput to 3",
+        "click element button:contains('In den Warenkorb')",
+        "wait for alert",
+        "dismiss alert"
+      ]
+    }
   ]
 }
