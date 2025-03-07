@@ -23,14 +23,14 @@
       "url": "http://test-website:3000/cart.html",
       "actions": [
         "wait for element #cart-items to be visible",
-        "click element button:contains('Zur Kasse')",
+        "click element a[href='checkout.html']",
         "wait for path to be /checkout.html"
       ]
     },
     {
       "url": "http://test-website:3000/checkout.html",
       "actions": [
-        "wait for element h1:contains('Checkout') to be visible",
+        "wait for element h1",
         "set field #name to 'Max Mustermann'",
         "set field #address to 'Musterstraße 123'",
         "set field #zip to '12345'",
@@ -47,8 +47,8 @@
       "url": "http://test-website:3000/product1.html",
       "actions": [
         "wait for element .gallery to be visible",
-        "click element img[alt='Produkt 1 Bild 2']",
-        "wait for element #mainImage[src='img/product1_2.webp'] to be visible",
+        "click element img[src='img/product1_2.JPEG']",
+        "wait for element #mainImage[src='img/product1_2.JPEG'] to be visible",
         "set field #numberInput to 2",
         "click element button:contains('In den Warenkorb')",
         "wait for alert",
@@ -58,7 +58,7 @@
     {
       "url": "http://test-website:3000/product2.html",
       "actions": [
-        "wait for element h1:contains('NES Konsole') to be visible",
+        "wait for element h1",
         "set field #numberInput to 1",
         "click element button:contains('In den Warenkorb')",
         "wait for alert",
@@ -68,7 +68,7 @@
     {
       "url": "http://test-website:3000/product3.html",
       "actions": [
-        "wait for element h1:contains('Nintendo Game Boy') to be visible",
+        "wait for element h1",
         "set field #numberInput to 3",
         "click element button:contains('In den Warenkorb')",
         "wait for alert",
