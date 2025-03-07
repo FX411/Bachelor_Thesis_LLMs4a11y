@@ -22,11 +22,4 @@ async function removeFromCart(productId) {
     loadCart();
 }
 
-async function checkout() {
-    const response = await fetch('/checkout', { method: 'POST' });
-    const result = await response.json();
-    alert(result.message);
-    loadCart();
-}
-
 document.addEventListener('DOMContentLoaded', loadCart);
