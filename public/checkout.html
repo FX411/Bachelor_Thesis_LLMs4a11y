@@ -1,15 +1,53 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <h1>Checkout</h1>
-    <p>Hier könnte die Zahlungsabwicklung stattfinden.</p>
-    <a href="index.html">Zur Startseite</a>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Checkout</title>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <h1>Checkout</h1>
+
+        <form id="checkout-form">
+            <fieldset>
+                <legend>Versandadresse</legend>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="address">Adresse:</label>
+                <input type="text" id="address" name="address" required>
+                
+                <label for="zip">PLZ:</label>
+                <input type="text" id="zip" name="zip" required>
+
+                <label for="city">Stadt:</label>
+                <input type="text" id="city" name="city" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Zahlungsinformationen</legend>
+                <label for="card-number">Kreditkartennummer:</label>
+                <input type="text" id="card-number" name="card-number" required>
+
+                <label for="expiry">Ablaufdatum (MM/YY):</label>
+                <input type="text" id="expiry" name="expiry" required>
+
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required>
+            </fieldset>
+
+            <button type="submit">Bestellung abschließen</button>
+        </form>
+
+        <a href="index.html">Zur Startseite</a>
+
+        <script>
+            document.getElementById('checkout-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                alert('Bestellung erfolgreich aufgegeben!'); 
+            });
+        </script>
+    </body>
 </html>
