@@ -3,9 +3,10 @@ import os
 import json
 import sys
 import re
-from google import genai
+from openai import OpenAI
 
-client = genai.Client(api_key=os.environ['GEMINI_API_KEY'])
+#client = OpenAI(api_key=os.environ['OPENAI_API_KEY'])
+client = OpenAI(api_key='sk-proj-HfNPdXrBfP3nYSvFpnDzT3BlbkFJADrJMgJjCpBvw4A4epXE')
 
 # Prompt für die KI
 BASE_PROMPT = (
@@ -53,19 +54,20 @@ def clean_json_response(response_text):
 # Sende an die KI
 def send_to_ai(filedict):
     input_data = json.dumps(filedict, indent=2)
-    response = client.models.generate_content(
-        model="gemini-1.5-flash",
-            contents=[BASE_PROMPT + f"Ändere alle Farben zu rosatönen.\n\nHier ist der Code:\n{input_data}"]
+    response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": BASE_PROMPT},
+                {
+                    "role": "user",
+                    "content": f"Ändere alle Farben zu rosatönen.\n\nHier ist der Code:\n{input_data}"
+                }
+            ]
     )
-
-    # Falls keine Antwort vorhanden ist
-    if not response or not hasattr(response, 'text') or not response.text.strip():
-        print("⚠️ Keine gültige Antwort von der KI erhalten.")
-        return {}
 
     try:
         # KI-Antwort bereinigen und JSON umwandeln
-        cleaned_json = clean_json_response(response.text)
+        cleaned_json = clean_json_response(response.choices[0].message.content)
         return json.loads(cleaned_json)
     
     except json.JSONDecodeError:
