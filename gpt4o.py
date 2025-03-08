@@ -5,8 +5,7 @@ import sys
 import re
 from openai import OpenAI
 
-#client = OpenAI(api_key=os.environ['OPENAI_API_KEY'])
-client = OpenAI(api_key='sk-proj-HfNPdXrBfP3nYSvFpnDzT3BlbkFJADrJMgJjCpBvw4A4epXE')
+client = OpenAI(api_key=os.environ['OPENAI_API_KEY'])
 
 # Prompt für die KI
 BASE_PROMPT = (
