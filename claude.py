@@ -3,10 +3,9 @@ import os
 import json
 import sys
 import re
-from openai import OpenAI
+import anthropic
 
-#client = OpenAI(api_key=os.environ['OPENAI_API_KEY'])
-client = OpenAI(api_key='sk-proj-HfNPdXrBfP3nYSvFpnDzT3BlbkFJADrJMgJjCpBvw4A4epXE')
+client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
 
 # Prompt für die KI
 BASE_PROMPT = (
@@ -54,20 +53,26 @@ def clean_json_response(response_text):
 # Sende an die KI
 def send_to_ai(filedict):
     input_data = json.dumps(filedict, indent=2)
-    response = client.chat.completions.create(
-            model="gpt-4o-mini",
+    response = client.messages.create(
+        model="claude-3-5-haiku-20241022",
+        max_tokens=8192,
+        system=BASE_PROMPT,
             messages=[
-                {"role": "system", "content": BASE_PROMPT},
                 {
                     "role": "user",
-                    "content": f"Ändere alle Farben zu rosatönen.\n\nHier ist der Code:\n{input_data}"
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": f"Ändere alle Farben zu rosatönen.\n\nHier ist der Code:\n{input_data}"
+                        }
+                    ]
                 }
             ]
     )
 
     try:
         # KI-Antwort bereinigen und JSON umwandeln
-        cleaned_json = clean_json_response(response.choices[0].message.content)
+        cleaned_json = clean_json_response(response.content[0].text)
         return json.loads(cleaned_json)
     
     except json.JSONDecodeError:

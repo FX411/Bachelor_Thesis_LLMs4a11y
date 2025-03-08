@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "openai-website"
-        TRANSFORMED_IMAGE_NAME = "transformed-openai-website"
+        IMAGE_NAME = "claude-website"
+        TRANSFORMED_IMAGE_NAME = "transformed-claude-website"
         IMAGE_TAG = "latest"
-        CONTAINER_NAME = "openai-website"
+        CONTAINER_NAME = "claude-website"
         NETWORK_NAME = "test-network"
         REPORTS_DIR = "reports"
         FIRST_REPORT="before_transformation.json"
-        SECOND_REPORT="after_transformation_openai.json"
+        SECOND_REPORT="after_transformation_claude.json"
     }
 
     stages {
@@ -83,7 +83,7 @@ pipeline {
                 script {
                     sh '''
                         echo "Setze Rechte für Python-Skript..."
-                        chmod +x gpt4o.py
+                        chmod +x claude.py
                         
                         echo "Installiere Abhängigkeiten..."
                         /opt/miniconda3/bin/python3 -m pip install google-genai
@@ -95,8 +95,8 @@ pipeline {
         stage('Python LLM Transformation') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'openaiapi', variable: 'OPENAI_API_KEY')]) {
-                        sh '/opt/miniconda3/bin/python3 gpt4o.py ${REPORTS_DIR}/${FIRST_REPORT}' }
+                    withCredentials([string(credentialsId: 'claudeapi', variable: 'ANTHROPIC_API_KEY')]) {
+                        sh '/opt/miniconda3/bin/python3 claude.py ${REPORTS_DIR}/${FIRST_REPORT}' }
                 }
             }
         }
