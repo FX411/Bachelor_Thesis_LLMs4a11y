@@ -46,7 +46,12 @@
         <script>
             document.getElementById('checkout-form').addEventListener('submit', function(event) {
                 event.preventDefault();
-                alert('Bestellung erfolgreich aufgegeben!'); 
+                
+                // Add success message instead of alert
+                let message = document.createElement("p");
+                message.innerText = "Bestellung erfolgreich aufgegeben!";
+                message.id = "success-message";
+                document.body.appendChild(message);
             });
         </script>
     </body>

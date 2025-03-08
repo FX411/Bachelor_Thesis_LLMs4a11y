@@ -70,8 +70,7 @@
         "set field #expiry to '12/25'",
         "set field #cvv to '123'",
         "click element button",
-        "wait for 2000ms", 
-        "dismiss alert"
+        "wait for element #success-message to be visible"
       ]
     }
   ]
