@@ -14,7 +14,12 @@ async function addToCart(productId, quantity) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ productId, quantity: quantity })
     });
-    alert('Produkt zum Warenkorb hinzugefügt!');
+
+    // Add a success message element instead of an alert
+    let message = document.createElement("p");
+    message.innerText = "Produkt wurde erfolgreich hinzugefügt!";
+    message.id = "success-message";
+    document.body.appendChild(message);
 }
 
 async function removeFromCart(productId) {

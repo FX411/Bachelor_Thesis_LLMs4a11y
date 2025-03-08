@@ -1,7 +1,7 @@
 {
   "defaults": {
     "standard": "WCAG2AAA",
-    "timeout": 60000,
+    "timeout": 30000,
     "screenCapture": "./screenshots/",
     "chromeLaunchConfig": {
       "args": ["--no-sandbox", "--disable-setuid-sandbox"]
@@ -12,6 +12,37 @@
     ]
   },
   "urls": [
+    {
+      "url": "http://test-website:3000/product1.html",
+      "actions": [
+        "wait for element .gallery to be visible",
+        "click element img[src='img/product1_2.JPEG']",
+        "wait for element #mainImage[src='img/product1_2.JPEG'] to be visible",
+        "set field #numberInput to 2",
+        "click element button",
+        "wait for element #success-message to be visible"
+      ]
+    },
+    {
+      "url": "http://test-website:3000/product2.html",
+      "actions": [
+        "wait for element body to be visible",
+        "set field #numberInput to 1",
+        "click element button",
+        "click element button",
+        "wait for element #success-message to be visible"
+      ]
+    },
+    {
+      "url": "http://test-website:3000/product3.html",
+      "actions": [
+        "wait for element body to be visible",
+        "set field #numberInput to 3",
+        "click element button",
+        "click element button",
+        "wait for element #success-message to be visible"
+      ]
+    },
     {
       "url": "http://test-website:3000",
       "actions": [
@@ -30,7 +61,7 @@
     {
       "url": "http://test-website:3000/checkout.html",
       "actions": [
-        "wait for element body to be visible",
+        "wait for element #checkout-form to be visible",
         "set field #name to 'Max Mustermann'",
         "set field #address to 'Musterstraße 123'",
         "set field #zip to '12345'",
@@ -38,38 +69,6 @@
         "set field #card-number to '4111111111111111'",
         "set field #expiry to '12/25'",
         "set field #cvv to '123'",
-        "click element button",
-        "wait for 2000ms", 
-        "dismiss alert"
-      ]
-    },
-    {
-      "url": "http://test-website:3000/product1.html",
-      "actions": [
-        "wait for element .gallery to be visible",
-        "click element img[src='img/product1_2.JPEG']",
-        "wait for element #mainImage[src='img/product1_2.JPEG'] to be visible",
-        "set field #numberInput to 2",
-        "click element button",
-        "wait for 2000ms", 
-        "dismiss alert"
-      ]
-    },
-    {
-      "url": "http://test-website:3000/product2.html",
-      "actions": [
-        "wait for element body to be visible",
-        "set field #numberInput to 1",
-        "click element button",
-        "wait for 2000ms", 
-        "dismiss alert"
-      ]
-    },
-    {
-      "url": "http://test-website:3000/product3.html",
-      "actions": [
-        "wait for element body to be visible",
-        "set field #numberInput to 3",
         "click element button",
         "wait for 2000ms", 
         "dismiss alert"
