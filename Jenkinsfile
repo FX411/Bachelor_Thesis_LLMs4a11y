@@ -8,8 +8,8 @@ pipeline {
         CONTAINER_NAME = "gemini-website"
         NETWORK_NAME = "test-network"
         REPORTS_DIR = "reports"
-        FIRST_REPORT="before_transformation.json"
-        SECOND_REPORT="after_transformation.json"
+        FIRST_REPORT="before_transformation_${env.BUILD_NUMBER}.json"
+        SECOND_REPORT="after_transformation_${env.BUILD_NUMBER}.json"
     }
 
     stages {
