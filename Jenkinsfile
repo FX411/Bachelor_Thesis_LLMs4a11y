@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "test-website"
-        TRANSFORMED_IMAGE_NAME = "transformed-test-website"
+        IMAGE_NAME = "gemini-website"
+        TRANSFORMED_IMAGE_NAME = "transformed-gemini-website"
         IMAGE_TAG = "latest"
-        CONTAINER_NAME = "test-website"
+        CONTAINER_NAME = "gemini-website"
         NETWORK_NAME = "test-network"
         REPORTS_DIR = "reports"
         FIRST_REPORT="before_transformation.json"
