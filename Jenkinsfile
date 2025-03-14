@@ -138,14 +138,14 @@ pipeline {
             }
         }
 
-        stage('Python LLM Transformation') {
+        stage('Create diff of WCAG Reports') {
             steps {
                 script {
                     sh '/opt/miniconda3/bin/python3 diff_reports.py ${REPORTS_DIR}/${FIRST_REPORT} ${REPORTS_DIR}/${SECOND_REPORT} ${REPORTS_DIR}/${DIFF_REPORT}' }
                 }
             }
 
-        stage('Archive Second WCAG Report') {
+        stage('Archive Artifacts') {
             steps {
                 script {
                     archiveArtifacts artifacts: "${REPORTS_DIR}/${SECOND_REPORT}", fingerprint: true
