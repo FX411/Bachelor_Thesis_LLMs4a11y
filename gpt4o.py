@@ -97,7 +97,7 @@ def send_to_ai(filedict, images, accessibility_report):
     ]
 
     content.append(
-            {"type": "text", "text": "Mache die Website möglichst WCAG konforn. Beachte den mitgeschickten Report und behebe die dort aufgezeigten Fehler."},
+            {"type": "text", "text": "Mache die Website so WCAG konform wie nur möglich, das Ziel ist es AAA Konformität zu erreichen. Beachte den mitgeschickten Report und behebe außerdem die dort aufgezeigten Fehler."},
         )
 
     # Code-Dateien hinzufügen
