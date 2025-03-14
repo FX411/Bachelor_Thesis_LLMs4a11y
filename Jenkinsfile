@@ -10,6 +10,7 @@ pipeline {
         REPORTS_DIR = "reports"
         FIRST_REPORT="before_transformation_${env.BUILD_NUMBER}.json"
         SECOND_REPORT="after_transformation_${env.BUILD_NUMBER}.json"
+        DIFF_REPORT="diff_report_${env.BUILD_NUMBER}.json"
     }
 
     stages {
@@ -84,6 +85,7 @@ pipeline {
                     sh '''
                         echo "Setze Rechte für Python-Skript..."
                         chmod +x gpt4o.py
+                        chmod +x diff_reports.py
                         
                         echo "Installiere Abhängigkeiten..."
                         /opt/miniconda3/bin/python3 -m pip install openai
@@ -136,10 +138,18 @@ pipeline {
             }
         }
 
+        stage('Python LLM Transformation') {
+            steps {
+                script {
+                    sh '/opt/miniconda3/bin/python3 diff_reports.py ${REPORTS_DIR}/${FIRST_REPORT} ${REPORTS_DIR}/${SECOND_REPORT} ${REPORTS_DIR}/${DIFF_REPORT}' }
+                }
+            }
+
         stage('Archive Second WCAG Report') {
             steps {
                 script {
                     archiveArtifacts artifacts: "${REPORTS_DIR}/${SECOND_REPORT}", fingerprint: true
+                    archiveArtifacts artifacts: "${REPORTS_DIR}/${DIFF_REPORT}", fingerprint: true
                     archiveArtifacts artifacts: "public/*"
                 }
             }
