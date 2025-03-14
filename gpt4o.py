@@ -100,11 +100,11 @@ def send_to_ai(filedict, images, accessibility_report):
             {"type": "text", "text": "Mache die Website möglichst WCAG konforn. Beachte den mitgeschickten Report und behebe die dort aufgezeigten Fehler."},
         )
 
-    # Code-Dateien als Text hinzufügen
-    for filename, filecontent in filedict.items():
-        content.append({
-            "type": "text",
-            "text": f"Hier ist der Code: {filename}\n\n{filecontent}"
+    # Code-Dateien hinzufügen
+    input_data = json.dumps(filedict, indent=2)
+    content.append({
+        "type": "text",
+        "text": f"Hier ist der Code: {input_data}"
         })
 
     # Bilder als base64 hinzufügen
