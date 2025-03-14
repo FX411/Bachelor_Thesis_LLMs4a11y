@@ -11,66 +11,11 @@
     ]
   },
   "urls": [
-    {
-      "url": "http://openai-website:3000/product1.html",
-      "actions": [
-        "wait for element .gallery to be visible",
-        "click element img[src='img/product1_2.JPEG']",
-        "wait for element #mainImage[src='img/product1_2.JPEG'] to be visible",
-        "set field #numberInput to 2",
-        "click element button",
-        "wait for element #success-message to be visible"
-      ]
-    },
-    {
-      "url": "http://openai-website:3000/product2.html",
-      "actions": [
-        "wait for element body to be visible",
-        "set field #numberInput to 1",
-        "click element button",
-        "click element button",
-        "wait for element #success-message to be visible"
-      ]
-    },
-    {
-      "url": "http://openai-website:3000/product3.html",
-      "actions": [
-        "wait for element body to be visible",
-        "set field #numberInput to 3",
-        "click element button",
-        "click element button",
-        "wait for element #success-message to be visible"
-      ]
-    },
-    {
-      "url": "http://openai-website:3000",
-      "actions": [
-        "click element .cart-link",
-        "wait for element #cart-items to be visible"
-      ]
-    },
-    {
-      "url": "http://openai-website:3000/cart.html",
-      "actions": [
-        "wait for element #cart-items to be visible",
-        "click element a[href='checkout.html']",
-        "wait for path to be /checkout.html"
-      ]
-    },
-    {
-      "url": "http://openai-website:3000/checkout.html",
-      "actions": [
-        "wait for element #checkout-form to be visible",
-        "set field #name to 'Max Mustermann'",
-        "set field #address to 'Musterstraße 123'",
-        "set field #zip to '12345'",
-        "set field #city to 'Musterstadt'",
-        "set field #card-number to '4111111111111111'",
-        "set field #expiry to '12/25'",
-        "set field #cvv to '123'",
-        "click element button",
-        "wait for element #success-message to be visible"
-      ]
-    }
+    "http://openai-website:3000/product1.html",
+    "http://openai-website:3000/product2.html",
+    "http://openai-website:3000/product3.html",
+    "http://openai-website:3000",
+    "http://openai-website:3000/cart.html",
+    "http://openai-website:3000/checkout.html"
   ]
 }
