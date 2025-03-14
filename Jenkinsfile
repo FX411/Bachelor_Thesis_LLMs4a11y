@@ -140,7 +140,7 @@ pipeline {
             steps {
                 script {
                     archiveArtifacts artifacts: "${REPORTS_DIR}/${SECOND_REPORT}", fingerprint: true
-                    archiveArtifacts artifacts: "public/*", fingerprint true
+                    archiveArtifacts artifacts: "public/*"
                 }
             }
         }
