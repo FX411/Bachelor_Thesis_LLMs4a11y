@@ -56,7 +56,7 @@ pipeline {
                 script {
                     sh '''
                         echo "Baue den pa11y-ci Container..."
-                        docker build -t pa11y-ci-tester-gemini-gemini -f Dockerfile.pa11y .
+                        docker build -t pa11y-ci-tester-gemini -f Dockerfile.pa11y .
 
                         echo "Erstelle Reports-Ordner..."
                         mkdir -p ${REPORTS_DIR}
