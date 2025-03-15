@@ -56,13 +56,13 @@ pipeline {
                 script {
                     sh '''
                         echo "Baue den pa11y-ci Container..."
-                        docker build -t pa11y-ci-tester -f Dockerfile.pa11y .
+                        docker build -t pa11y-ci-tester-openai -f Dockerfile.pa11y .
 
                         echo "Erstelle Reports-Ordner..."
                         mkdir -p ${REPORTS_DIR}
 
                         echo "Starte Accessibility-Tests (Erster Durchlauf)..."
-                        docker run --rm --network=${NETWORK_NAME} -v $PWD/${REPORTS_DIR}:/app/reports pa11y-ci-tester || true
+                        docker run --rm --network=${NETWORK_NAME} -v $PWD/${REPORTS_DIR}:/app/reports pa11y-ci-tester-openai || true
 
                         echo "Speichere den ersten WCAG-Report..."
                         mv ${REPORTS_DIR}/pa11y-report.json ${REPORTS_DIR}/${FIRST_REPORT}
@@ -129,7 +129,7 @@ pipeline {
                 script {
                     sh '''
                         echo "Starte Accessibility-Tests (Zweiter Durchlauf, transformierte Website)..."
-                        docker run --rm --network=${NETWORK_NAME} -v $PWD/${REPORTS_DIR}:/app/reports pa11y-ci-tester || true
+                        docker run --rm --network=${NETWORK_NAME} -v $PWD/${REPORTS_DIR}:/app/reports pa11y-ci-tester-openai || true
 
                         echo "Speichere den zweiten WCAG-Report..."
                         mv ${REPORTS_DIR}/pa11y-report.json ${REPORTS_DIR}/${SECOND_REPORT}
