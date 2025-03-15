@@ -1,7 +1,7 @@
 {
   "defaults": {
     "standard": "WCAG2AAA",
-    "timeout": 30000,
+    "timeout": 30010,
     "screenCapture": "./screenshots/",
     "chromeLaunchConfig": {
       "args": ["--no-sandbox", "--disable-setuid-sandbox"]
@@ -11,11 +11,11 @@
     ]
   },
   "urls": [
-    "http://openai-website:3000/product1.html",
-    "http://openai-website:3000/product2.html",
-    "http://openai-website:3000/product3.html",
-    "http://openai-website:3000",
-    "http://openai-website:3000/cart.html",
-    "http://openai-website:3000/checkout.html"
+    "http://gemini-website:3001/product1.html",
+    "http://gemini-website:3001/product2.html",
+    "http://gemini-website:3001/product3.html",
+    "http://gemini-website:3001",
+    "http://gemini-website:3001/cart.html",
+    "http://gemini-website:3001/checkout.html"
   ]
 }
