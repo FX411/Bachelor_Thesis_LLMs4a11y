@@ -6,7 +6,7 @@ pipeline {
         TRANSFORMED_IMAGE_NAME = "transformed-gemini-website"
         IMAGE_TAG = "latest"
         CONTAINER_NAME = "gemini-website"
-        NETWORK_NAME = "test-network"
+        NETWORK_NAME = "gemini-network"
         REPORTS_DIR = "reports"
         FIRST_REPORT="before_transformation_${env.BUILD_NUMBER}.json"
         SECOND_REPORT="after_transformation_${env.BUILD_NUMBER}.json"
