@@ -89,6 +89,7 @@ pipeline {
                         
                         echo "Installiere Abhängigkeiten..."
                         /opt/miniconda3/bin/python3 -m pip install google-genai
+                        /opt/miniconda3/bin/python3 -m pip install Pillow
                     '''
                 }
             }
