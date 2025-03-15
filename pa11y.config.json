@@ -1,7 +1,7 @@
 {
   "defaults": {
     "standard": "WCAG2AAA",
-    "timeout": 30000,
+    "timeout": 30020,
     "screenCapture": "./screenshots/",
     "chromeLaunchConfig": {
       "args": ["--no-sandbox", "--disable-setuid-sandbox"]
@@ -12,7 +12,7 @@
   },
   "urls": [
     {
-      "url": "http://claude-website:3000/product1.html",
+      "url": "http://claude-website:3002/product1.html",
       "actions": [
         "wait for element .gallery to be visible",
         "click element img[src='img/product1_2.JPEG']",
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "url": "http://claude-website:3000/product2.html",
+      "url": "http://claude-website:3002/product2.html",
       "actions": [
         "wait for element body to be visible",
         "set field #numberInput to 1",
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "url": "http://claude-website:3000/product3.html",
+      "url": "http://claude-website:3002/product3.html",
       "actions": [
         "wait for element body to be visible",
         "set field #numberInput to 3",
@@ -43,14 +43,14 @@
       ]
     },
     {
-      "url": "http://claude-website:3000",
+      "url": "http://claude-website:3002",
       "actions": [
         "click element .cart-link",
         "wait for element #cart-items to be visible"
       ]
     },
     {
-      "url": "http://claude-website:3000/cart.html",
+      "url": "http://claude-website:3002/cart.html",
       "actions": [
         "wait for element #cart-items to be visible",
         "click element a[href='checkout.html']",
@@ -58,7 +58,7 @@
       ]
     },
     {
-      "url": "http://claude-website:3000/checkout.html",
+      "url": "http://claude-website:3002/checkout.html",
       "actions": [
         "wait for element #checkout-form to be visible",
         "set field #name to 'Max Mustermann'",
