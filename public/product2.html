@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Product 2</title>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <a href="cart.html" class="cart-link">🛒 Warenkorb</a>
+        <h1>Nintendo Entertainment System - NES</h1>
+        <div class="gallery">
+            <img id="mainImage" class="main-image" src="img/product2_1.JPEG" alt="Product 2">
+            <div>
+                <img src="img/product2_1.JPEG" onclick="changeImage('img/product2_1.JPEG')">
+                <img src="img/product2_2.JPEG" onclick="changeImage('img/product2_2.JPEG')">
+                <img src="img/product2_3.JPEG" onclick="changeImage('img/product2_3.JPEG')">
+            </div>
+        </div>
+        <p>Nintendo Entertainment System (NES) – Die Legende der 8-Bit-Ära! 🎮
+            Erlebe Gaming-Nostalgie pur mit dem Nintendo Entertainment System (NES) – der Konsole, die Videospiele revolutionierte! Mit seinen ikonischen 8-Bit-Spielen, dem klassischen rechteckigen Controller und einer riesigen Bibliothek an unvergesslichen Titeln bietet das NES endlosen Spielspaß für Retro-Fans und neue Spieler gleichermaßen.
+            
+            Highlights des NES:
+            ✅ Legendäre Spiele: Super Mario Bros., The Legend of Zelda, Metroid und viele mehr!
+            ✅ Kultiges Design: Klassische grau-schwarze Optik mit dem berühmten Cartridge-Slot.
+            ✅ Einfache Bedienung: Plug & Play – einfach anschließen und loszocken!
+            ✅ Retro-Feeling: Original NES-Controller für authentische Spielerlebnisse.
+            
+            Tauche ein in die goldene Ära des Gamings und erlebe, warum das NES eine der bedeutendsten Konsolen aller Zeiten ist!
+            
+            🔹 Jetzt im Shop erhältlich – hol dir das NES und spiele Gaming-Geschichte! 🎮🔥</p>
+        <p>Preis: 20.00€</p>
+        <label for="numberInput">Anzahl:</label>
+        <input type="number" id="numberInput" name="numberInput" min="0" max="100">
+        <button onclick="addToCart(2,getQuantity())">In den Warenkorb</button>
+        <a href="index.html">Zurück</a>
+        <script>
+            function changeImage(src) {
+                document.getElementById('mainImage').src = src;
+            }
+        </script>
+        <script src="script.js"></script>
+    </body>
+</html>
