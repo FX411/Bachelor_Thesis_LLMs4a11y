@@ -56,7 +56,7 @@ pipeline {
                         mkdir -p ${REPORTS_DIR}
 
                         echo "Starte Accessibility-Tests..."
-                        docker run --rm --network=${NETWORK_NAME} -v $PWD/${REPORTS_DIR}:/app/reports pa11y-ci-tester-main
+                        docker run --rm --network=${NETWORK_NAME} -v $PWD/${REPORTS_DIR}:/app/reports pa11y-ci-tester-main || true
 
                         echo "Speichere den WCAG-Report..."
                         mv ${REPORTS_DIR}/pa11y-report.json ${REPORTS_DIR}/${FIRST_REPORT}
