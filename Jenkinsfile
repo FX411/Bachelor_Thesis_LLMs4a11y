@@ -16,7 +16,7 @@ pipeline {
                 script {
                     git branch: 'main',
                         credentialsId: 'ssh',
-                        url: 'git@github.com:FX411/jenkins-tests.git'
+                        url: 'git@github.com:FX411/Bachelor_Thesis_LLMs4a11y.git'
                 }
             }
         }
