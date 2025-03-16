@@ -11,6 +11,6 @@
     ] 
   },
   "urls": [
-    "http://test-website:3000"
+    "http://main-website:3333"
   ]
 }

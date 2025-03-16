@@ -2,13 +2,12 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "test-website"
+        IMAGE_NAME = "main-website"
         IMAGE_TAG = "latest"
-        CONTAINER_NAME = "test-website"
-        NETWORK_NAME = "test-network"
+        CONTAINER_NAME = "main-website"
+        NETWORK_NAME = "main-network"
         REPORTS_DIR = "reports"
-        FIRST_REPORT="before_transformation.json"
-        SECOND_REPORT="after_transformation.json"
+        FIRST_REPORT="pa11y_report_${env.BUILD_NUMBER}.json"
     }
 
     stages {
@@ -37,7 +36,7 @@ pipeline {
                         docker rm ${CONTAINER_NAME} || true
 
                         echo "Starte neuen Website-Container..."
-                        docker run -d --network=${NETWORK_NAME} -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}
+                        docker run -d --network=${NETWORK_NAME} -p 3333:3333 --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}
 
                         echo "Warte auf Server-Start..."
                         sleep 10
@@ -51,29 +50,17 @@ pipeline {
                 script {
                     sh '''
                         echo "Baue den pa11y-ci Container..."
-                        docker build -t pa11y-ci-tester -f Dockerfile.pa11y .
+                        docker build -t pa11y-ci-tester-main -f Dockerfile.pa11y .
 
                         echo "Erstelle Reports-Ordner..."
                         mkdir -p ${REPORTS_DIR}
 
-                        echo "Starte Accessibility-Tests (Erster Durchlauf)..."
-                        docker run --rm --network=${NETWORK_NAME} -v $PWD/${REPORTS_DIR}:/app/reports pa11y-ci-tester
+                        echo "Starte Accessibility-Tests..."
+                        docker run --rm --network=${NETWORK_NAME} -v $PWD/${REPORTS_DIR}:/app/reports pa11y-ci-tester-main
 
-                        echo "Speichere den ersten WCAG-Report..."
+                        echo "Speichere den WCAG-Report..."
                         mv ${REPORTS_DIR}/pa11y-report.json ${REPORTS_DIR}/${FIRST_REPORT}
                     '''
-                }
-            }
-        }
-
-        stage('Remove website container') {
-            steps {
-                script {
-                    sh '''
-                        echo "Stoppe und entferne Website-Container..."
-                        docker stop ${CONTAINER_NAME} || true
-                        docker rm ${CONTAINER_NAME} || true
-                        '''
                 }
             }
         }
@@ -82,63 +69,6 @@ pipeline {
             steps {
                 script {
                     archiveArtifacts artifacts: "${REPORTS_DIR}/${FIRST_REPORT}", fingerprint: true
-                }
-            }
-        }
-
-        stage('Python transformation') {
-            steps {
-                script {
-                    sh '''
-                        echo "Setze Rechte für Python-Skript..."
-                        chmod +x pythonhexerei.py
-                        
-                        echo "Führe Python-Skript aus mit dem ersten WCAG-Report..."
-                        /opt/miniconda3/bin/python3 pythonhexerei.py ${REPORTS_DIR}/${FIRST_REPORT}
-                    '''
-                }
-            }
-        }
-
-        stage('Build and Run Transformed Website Container') {
-            steps {
-                script {
-                    sh '''
-                        echo "Baue Docker-Image mit transformiertem Code..."
-                        docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
-
-                        echo "Stoppe und entferne alten transformierten Website-Container..."
-                        docker stop ${CONTAINER_NAME} || true
-                        docker rm ${CONTAINER_NAME} || true
-
-                        echo "Starte neuen transformierten Website-Container..."
-                        docker run -d --network=${NETWORK_NAME} -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}
-
-                        echo "Warte auf Server-Start..."
-                        sleep 10
-                    '''
-                }
-            }
-        }
-
-        stage('Run Second WCAG Test with pa11y-ci (Transformed Website)') {
-            steps {
-                script {
-                    sh '''
-                        echo "Starte Accessibility-Tests (Zweiter Durchlauf, transformierte Website)..."
-                        docker run --rm --network=${NETWORK_NAME} -v $PWD/${REPORTS_DIR}:/app/reports pa11y-ci-tester
-
-                        echo "Speichere den zweiten WCAG-Report..."
-                        mv ${REPORTS_DIR}/pa11y-report.json ${REPORTS_DIR}/${SECOND_REPORT}
-                    '''
-                }
-            }
-        }
-
-        stage('Archive Second WCAG Report') {
-            steps {
-                script {
-                    archiveArtifacts artifacts: "${REPORTS_DIR}/${SECOND_REPORT}", fingerprint: true
                 }
             }
         }
