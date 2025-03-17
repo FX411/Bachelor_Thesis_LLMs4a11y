@@ -10,11 +10,14 @@ pipeline {
         FIRST_REPORT="pa11y_report_${env.BUILD_NUMBER}.json"
     }
 
-    stages {
+   stages {
         stage('Git Checkout') {
             steps {
                 script {
-                    git branch: 'main',
+                    def branchName = env.BRANCH_NAME ?: 'main'  // Falls kein Branch gesetzt ist, Standard auf "main"
+                    echo "Starte Checkout für Branch: ${branchName}"
+
+                    git branch: branchName,
                         credentialsId: 'ssh',
                         url: 'git@github.com:FX411/Bachelor_Thesis_LLMs4a11y.git'
                 }

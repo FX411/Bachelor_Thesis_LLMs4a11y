@@ -1,8 +1,13 @@
 body {
     font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
     text-align: center;
-    background-color: #1a1a1a;
-    color: #f4f4f4;
+    background-color: #ee1c25;
+    color: #eadc6f;
+}
+
+*:focus {
+    outline: none !important;
 }
 
 .products {
