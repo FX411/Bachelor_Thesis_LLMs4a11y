@@ -1,0 +1,21 @@
+{
+  "defaults": {
+    "standard": "WCAG2AAA",
+    "timeout": 30000,
+    "screenCapture": "./screenshots/",
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+    },
+    "reporters": [
+      ["json", { "fileName": "./reports/pa11y-report.json" }]
+    ]
+  },
+  "urls": [
+    "http://main-website:3333/product1.html",
+    "http://main-website:3333/product2.html",
+    "http://main-website:3333/product3.html",
+    "http://main-website:3333",
+    "http://main-website:3333/cart.html",
+    "http://main-website:3333/checkout.html"
+  ]
+}
