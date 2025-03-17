@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <title>Produkt 1</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -10,12 +10,12 @@
     <body>
         <a href="cart.html" class="cart-link">🛒 Warenkorb</a>
         <h1>Nintendo Entertainment System (NES) Controller</h1>
-        <div class="gallery">
-            <img id="mainImage" class="main-image" src="img/product1_1.JPEG" alt="Produkt 1">
-            <div>
-                <img src="img/product1_1.JPEG" onclick="changeImage('img/product1_1.JPEG')">
-                <img src="img/product1_2.JPEG" onclick="changeImage('img/product1_2.JPEG')">
-                <img src="img/product1_3.JPEG" onclick="changeImage('img/product1_3.JPEG')">
+        <div class="gallery" data-images="img/product1_1.JPEG,img/product1_2.JPEG,img/product1_3.JPEG">
+            <img id="mainImage" class="main-image" src="img/product1_1.JPEG">
+            <div class="thumbnails">
+                <img src="img/product1_1.JPEG">
+                <img src="img/product1_2.JPEG">
+                <img src="img/product1_3.JPEG">
             </div>
         </div>
         <p>Nintendo Entertainment System (NES) Controller – Klassischer 8-Bit-Spielspaß! 🎮 <br>
@@ -30,7 +30,8 @@
             Erwecke deine Retro-Gaming-Erinnerungen zum Leben und erlebe Klassiker wie Super Mario Bros. oder The Legend of Zelda mit dem originalen Controller!<br><br>
             
             🔹 Jetzt im Shop erhältlich – hol dir den NES Controller und zocke wie damals! 🎮🔥</p>
-        <p>Preis: 10.00€</p>
+        <p style="color: green;">Bestand</p>    
+        <p>Preis: 25.00€</p>
         <label for="numberInput">Anzahl:</label>
         <input type="number" id="numberInput" name="numberInput" min="0" max="100">
         <button onclick="addToCart(1,getQuantity())">In den Warenkorb</button>

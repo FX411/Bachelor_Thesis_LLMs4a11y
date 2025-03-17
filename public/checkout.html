@@ -2,7 +2,7 @@
 <html lang="de">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
         <title>Checkout</title>
         <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="styles.css">
@@ -47,7 +47,6 @@
             document.getElementById('checkout-form').addEventListener('submit', function(event) {
                 event.preventDefault();
                 
-                // Add success message instead of alert
                 let message = document.createElement("p");
                 message.innerText = "Bestellung erfolgreich aufgegeben!";
                 message.id = "success-message";
