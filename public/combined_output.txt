@@ -1,0 +1,464 @@
+=== cart.html ===
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+        <title>Warenkorb</title>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <h1>Ihr Warenkorb</h1>
+        <ul id="cart-items"></ul>
+        <a href="checkout.html">
+            <button>Zur Kasse</button>
+        </a>
+        <a href="index.html">Weiter einkaufen</a>
+        <script src="script.js"></script>
+    </body>
+</html>
+
+
+=== checkout.html ===
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+        <title>Checkout</title>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <h1>Checkout</h1>
+
+        <form id="checkout-form">
+            <fieldset>
+                <legend>Versandadresse</legend>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="address">Adresse:</label>
+                <input type="text" id="address" name="address" required>
+                
+                <label for="zip">PLZ:</label>
+                <input type="text" id="zip" name="zip" required>
+
+                <label for="city">Stadt:</label>
+                <input type="text" id="city" name="city" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Zahlungsinformationen</legend>
+                <label for="card-number">Kreditkartennummer:</label>
+                <input type="text" id="card-number" name="card-number" required>
+
+                <label for="expiry">Ablaufdatum (MM/YY):</label>
+                <input type="text" id="expiry" name="expiry" required>
+
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required>
+            </fieldset>
+
+            <button type="submit">Bestellung abschließen</button>
+        </form>
+
+        <a href="index.html">Zur Startseite</a>
+
+        <script>
+            document.getElementById('checkout-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                let message = document.createElement("p");
+                message.innerText = "Bestellung erfolgreich aufgegeben!";
+                message.id = "success-message";
+                document.body.appendChild(message);
+            });
+        </script>
+    </body>
+</html>
+
+
+=== combined_output.txt ===
+
+
+=== filorator.sh ===
+#!/bin/bash
+
+# Output file
+output="combined_output.txt"
+> "$output"  # Empty the file if it already exists
+
+# Loop over files (not directories)
+for file in *; do
+  if [ -f "$file" ]; then
+    echo "=== $file ===" >> "$output"
+    cat "$file" >> "$output"
+    echo -e "\n" >> "$output"
+  fi
+done
+
+
+
+=== index.html ===
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+        <title>Online Shop</title>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <a href="cart.html" class="cart-link">🛒 Warenkorb</a>
+        <h1>Willkommen im Shop</h1>
+        <div class="products">
+            <div class="product-box">
+                <h2>NES Controller</h2>
+                <a href="product1.html">
+                    <img src="img/product1_1.JPEG" style="width: 100px; display: block; margin: auto;">
+                    Mehr erfahren
+                </a>
+            </div>
+            <div class="product-box">
+                <h2>NES Konsole</h2>
+                <a href="product2.html">
+                    <img src="img/product2_1.JPEG" style="width: 100px; display: block; margin: auto;">
+                    Mehr erfahren
+                </a>
+            </div>
+            <div class="product-box">
+                <h2>Nintendo Game Boy (DMG-01)</h2>
+                <a href="product3.html">
+                    <img src="img/product3_1.JPEG" style="width: 100px; display: block; margin: auto;">
+                    Mehr erfahren
+                </a>
+            </div>
+        </div>
+    </body>
+</html>
+
+
+=== product1.html ===
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Produkt 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+    <body>
+        <a href="cart.html" class="cart-link">🛒 Warenkorb</a>
+        <h1>Nintendo Entertainment System (NES) Controller</h1>
+        <div class="gallery" data-images="img/product1_1.JPEG,img/product1_2.JPEG,img/product1_3.JPEG">
+            <img id="mainImage" class="main-image" src="img/product1_1.JPEG">
+            <div class="thumbnails">
+                <img src="img/product1_1.JPEG">
+                <img src="img/product1_2.JPEG">
+                <img src="img/product1_3.JPEG">
+            </div>
+        </div>
+        <p>Nintendo Entertainment System (NES) Controller – Klassischer 8-Bit-Spielspaß! 🎮 <br>
+            Der Nintendo Entertainment System (NES) Controller ist die perfekte Ergänzung für Retro-Gaming-Fans! Mit seinem ikonischen rechteckigen Design, den zwei Action-Buttons (A & B), dem präzisen Steuerkreuz und den Start- und Select-Tasten bietet er ein authentisches NES-Spielerlebnis.<br><br>
+            
+            Features des NES Controllers:<br>
+            ✅ Originalgetreues Design: Klassisches, kantiges Layout für echtes 8-Bit-Feeling.<br>
+            ✅ Präzise Steuerung: Robuste Tasten für schnelle Reaktionen in actionreichen Spielen.<br>
+            ✅ Ergonomisch & kompakt: Perfekt für lange Gaming-Sessions.<br>
+            ✅ Plug & Play: Einfach mit dem NES oder kompatiblen Geräten verbinden und loslegen.<br><br>
+            
+            Erwecke deine Retro-Gaming-Erinnerungen zum Leben und erlebe Klassiker wie Super Mario Bros. oder The Legend of Zelda mit dem originalen Controller!<br><br>
+            
+            🔹 Jetzt im Shop erhältlich – hol dir den NES Controller und zocke wie damals! 🎮🔥</p>
+        <p style="color: green;">Bestand</p>    
+        <p>Preis: 25.00€</p>
+        <label for="numberInput">Anzahl:</label>
+        <input type="number" id="numberInput" name="numberInput" min="0" max="100">
+        <button onclick="addToCart(1,getQuantity())">In den Warenkorb</button>
+        <a href="index.html">Zurück</a>
+        <script>
+            function changeImage(src) {
+                document.getElementById('mainImage').src = src;
+            }
+        </script>
+        <script src="script.js"></script>
+    </body>
+</html>
+
+
+=== product2.html ===
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+        <title>Product 2</title>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <a href="cart.html" class="cart-link">🛒 Warenkorb</a>
+        <h1>Nintendo Entertainment System - NES</h1>
+        <div class="gallery" data-images="img/product2_1.JPEG,img/product2_2.JPEG,img/product2_3.JPEG">
+            <img id="mainImage" class="main-image" src="img/product2_1.JPEG">
+            <div class="thumbnails">
+                <img src="img/product2_1.JPEG">
+                <img src="img/product2_2.JPEG">
+                <img src="img/product2_3.JPEG">
+            </div>
+        </div>
+        <p>Nintendo Entertainment System (NES) – Die Legende der 8-Bit-Ära! 🎮<br>
+            Erlebe Gaming-Nostalgie pur mit dem Nintendo Entertainment System (NES) – der Konsole, die Videospiele revolutionierte! Mit seinen ikonischen 8-Bit-Spielen, dem klassischen rechteckigen Controller und einer riesigen Bibliothek an unvergesslichen Titeln bietet das NES endlosen Spielspaß für Retro-Fans und neue Spieler gleichermaßen.<br><br>
+            
+            Highlights des NES:<br>
+            ✅ Legendäre Spiele: Super Mario Bros., The Legend of Zelda, Metroid und viele mehr!<br>
+            ✅ Kultiges Design: Klassische grau-schwarze Optik mit dem berühmten Cartridge-Slot.<br>
+            ✅ Einfache Bedienung: Plug & Play – einfach anschließen und loszocken!<br>
+            ✅ Retro-Feeling: Original NES-Controller für authentische Spielerlebnisse.<br><br>
+            
+            Tauche ein in die goldene Ära des Gamings und erlebe, warum das NES eine der bedeutendsten Konsolen aller Zeiten ist!<br><br>
+            
+            🔹 Jetzt im Shop erhältlich – hol dir das NES und spiele Gaming-Geschichte! 🎮🔥</p>
+        <p style="color: yellow;">Bestand</p> 
+        <p>Preis: 80.00€</p>
+        <label for="numberInput">Anzahl:</label>
+        <input type="number" id="numberInput" name="numberInput" min="0" max="100">
+        <button onclick="addToCart(2,getQuantity())">In den Warenkorb</button>
+        <a href="index.html">Zurück</a>
+        <script>
+            function changeImage(src) {
+                document.getElementById('mainImage').src = src;
+            }
+        </script>
+        <script src="script.js"></script>
+    </body>
+</html>
+
+
+=== product3.html ===
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+        <title>Produkt 3</title>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <a href="cart.html" class="cart-link">🛒 Warenkorb</a>
+        <h1>Nintendo Game Boy (DMG-01)</h1>
+        <div class="gallery" data-images="img/product3_1.JPEG,img/product3_2.JPEG,img/product3_3.JPEG">
+            <img id="mainImage" class="main-image" src="img/product3_1.JPEG">
+            <div class="thumbnails">
+                <img src="img/product3_1.JPEG">
+                <img src="img/product3_2.JPEG">
+                <img src="img/product3_3.JPEG">
+            </div>
+        </div>
+        <p>Nintendo Game Boy (DMG-01) – Der Klassiker unter den Handheld-Konsolen! 🎮<br>
+            Tauche ein in die Welt des Nintendo Game Boy (DMG-01) – dem legendären Handheld, der mobiles Gaming revolutionierte! Mit seinem unverwechselbaren grauen Gehäuse, dem kontrastreichen 8-Bit-Display und einer riesigen Auswahl an ikonischen Spielen wurde der Game Boy zur meistverkauften Handheld-Konsole seiner Zeit.<br><br>
+            
+            Highlights des Game Boy (DMG-01):<br>
+            ✅ Kultiges Design: Klassische graue Optik mit einem monochromen LCD-Display.<br>
+            ✅ Riesige Spielebibliothek: Erlebe Klassiker wie Tetris, Super Mario Land und The Legend of Zelda: Link’s Awakening.<br>
+            ✅ Lange Akkulaufzeit: Bis zu 30 Stunden Spielspaß mit nur vier AA-Batterien!<br>
+            ✅ Kompakt & robust: Perfekt für unterwegs – der Game Boy ist bekannt für seine Langlebigkeit.<br>
+            ✅ Kopfhöreranschluss: Genieße 8-Bit-Soundeffekte und Musik mit Kopfhörern für das volle Retro-Erlebnis.<br><br>
+            
+            Erlebe die Magie des Game Boy (DMG-01) und genieße zeitlose Gaming-Klassiker – egal wann, egal wo!<br><br>
+            
+            🔹 Jetzt im Shop erhältlich – hol dir den Handheld, mit dem alles begann! 🎮🔥</p>
+        <p style="color: red;">Bestand</p> 
+        <p>Preis: 40.00€</p>
+        <label for="numberInput">Anzahl:</label>
+        <input type="number" id="numberInput" name="numberInput" min="0" max="100">
+        <button onclick="addToCart(3,getQuantity())">In den Warenkorb</button>
+        <a href="index.html">Zurück</a>
+        <script>
+            function changeImage(src) {
+                document.getElementById('mainImage').src = src;
+            }
+        </script>
+        <script src="script.js"></script>
+    </body>
+</html>
+
+
+=== script.js ===
+async function loadCart() {
+    const response = await fetch('/cart');
+    const cart = await response.json();
+    document.getElementById('cart-items').innerHTML = cart.map(item =>
+        `<li>Produkt ${item.productId}: ${item.quantity} 
+            <button onclick="removeFromCart(${item.productId})">X</button>
+        </li>`
+    ).join('');
+}
+
+function getQuantity() {
+    return document.getElementById("numberInput").value;
+}
+
+async function addToCart(productId, quantity) {
+    await fetch('/cart', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ productId, quantity })
+    });
+
+    let existingMessage = document.getElementById("success-message");
+    if (existingMessage) existingMessage.remove();
+
+    let message = document.createElement("p");
+    message.innerText = "Produkt wurde erfolgreich hinzugefügt!";
+    message.id = "success-message";
+    document.body.appendChild(message);
+
+    loadCart();
+}
+
+async function removeFromCart(productId) {
+    await fetch(`/cart/${productId}`, { method: 'DELETE' });
+    loadCart();
+}
+
+document.addEventListener('DOMContentLoaded', loadCart);
+
+document.addEventListener("DOMContentLoaded", function () {
+    let galleries = document.querySelectorAll(".gallery");
+
+    galleries.forEach((gallery) => {
+        let mainImage = gallery.querySelector(".main-image");
+        let thumbnails = gallery.querySelectorAll(".thumbnails img");
+        let images = gallery.dataset.images.split(",");
+        let currentIndex = 0;
+        let interval;
+
+        function changeImage(src) {
+            mainImage.src = src;
+            currentIndex = images.indexOf(src);
+        }
+
+        function autoRotate() {
+            currentIndex = (currentIndex + 1) % images.length;
+            mainImage.src = images[currentIndex];
+        }
+
+        thumbnails.forEach((thumb) => {
+            thumb.addEventListener("click", function () {
+                changeImage(this.src);
+                resetAutoRotate();
+            });
+        });
+
+        function startAutoRotate() {
+            interval = setInterval(autoRotate, 3000);
+        }
+        startAutoRotate();
+
+        function resetAutoRotate() {
+            clearInterval(interval);
+            startAutoRotate();
+        }
+    });
+});
+
+
+=== styles.css ===
+body {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    text-align: center;
+    background-color: #ee1c25;
+    color: #eadc6f;
+}
+
+*:focus {
+    outline: none !important;
+}
+
+.products {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.product-box {
+    border: 3px solid #ffcc00;
+    background-color: #222;
+    padding: 20px;
+    text-align: center;
+    width: 30%;
+    box-shadow: 5px 5px 10px rgba(255, 204, 0, 0.5);
+    font-family: 'Press Start 2P', cursive;
+}
+
+.product-box a {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #ffcc00;
+}
+
+.cart-link {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff0000;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: 'Press Start 2P', cursive;
+    border: 2px solid #fff;
+}
+
+.cart-link:hover {
+    background-color: #cc0000;
+}
+
+.products a { 
+    display: block; 
+    margin: 10px; 
+}
+
+.gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #111;
+    padding: 20px;
+    border: 3px solid #ffcc00;
+}
+
+.gallery img {
+    width: 100px;
+    height: auto;
+    margin: 10px;
+    cursor: pointer;
+    border: 3px solid #ffcc00;
+    box-shadow: 4px 4px 8px rgba(255, 204, 0, 0.5);
+}
+
+.gallery img:hover {
+    border: 3px solid #ff0000;
+}
+
+.gallery .main-image {
+    width: 400px;
+    height: auto;
+    margin-bottom: 20px;
+    border: 3px solid #ffcc00;
+    box-shadow: 5px 5px 15px rgba(255, 204, 0, 0.7);
+}
+
+
