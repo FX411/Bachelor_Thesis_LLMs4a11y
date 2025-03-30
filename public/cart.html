@@ -1,40 +1,58 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-        <title>Warenkorb | Retro Gaming Shop</title>
-        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
-        
-        <nav aria-label="Hauptnavigation">
-            <a href="cart.html" class="cart-link" aria-label="Warenkorb anzeigen">🛒 Warenkorb</a>
-        </nav>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Warenkorb | Retro Gaming Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
 
-        <main id="main">
-            <h1>Ihr Warenkorb</h1>
-            <div id="cart-summary" aria-live="polite">
-                <ul id="cart-items" role="list"></ul>
+    <header>
+        <nav aria-label="Hauptnavigation">
+            <a href="index.html" class="back-link" aria-label="Zurück zur Produktübersicht">← Zurück zum Shop</a>
+        </nav>
+    </header>
+
+    <main id="main">
+        <h1>Ihr Warenkorb</h1>
+
+        <div id="cart-content" aria-live="polite">
+            <div id="cart-summary">
+                <ul id="cart-items" role="list" aria-label="Warenkorb Artikel"></ul>
                 <p id="cart-empty" class="hidden">Ihr Warenkorb ist leer.</p>
             </div>
 
-            <div class="action-buttons" role="group" aria-label="Warenkorbaktionen">
-                <a href="checkout.html" class="button primary" role="button">Zur Kasse gehen</a>
-                <a href="index.html" class="button secondary">Weiter einkaufen</a>
+            <div class="cart-total">
+                <p>Gesamtsumme: <span id="total-amount">0,00 €</span></p>
             </div>
-        </main>
 
-        <footer>
-            <nav aria-label="Footer Navigation">
-                <a href="index.html">Startseite</a>
-                <a href="datenschutz.html">Datenschutz</a>
-                <a href="impressum.html">Impressum</a>
-            </nav>
-        </footer>
+            <div class="action-buttons" role="group" aria-label="Warenkorbaktionen">
+                <a href="checkout.html" 
+                   class="button primary" 
+                   role="button" 
+                   id="checkout-button"
+                   aria-disabled="true">
+                    Zur Kasse gehen
+                </a>
+                <a href="index.html" 
+                   class="button secondary">
+                    Weiter einkaufen
+                </a>
+            </div>
+        </div>
+    </main>
 
-        <script src="script.js"></script>
-    </body>
+    <footer>
+        <nav aria-label="Footer Navigation">
+            <a href="datenschutz.html">Datenschutz</a>
+            <a href="impressum.html">Impressum</a>
+        </nav>
+    </footer>
+
+    <div id="notifications" role="status" aria-live="polite"></div>
+    <script src="script.js"></script>
+</body>
 </html>

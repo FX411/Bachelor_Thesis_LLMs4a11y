@@ -13,25 +13,27 @@
     <header>
         <nav aria-label="Hauptnavigation">
             <a href="index.html" class="back-link" aria-label="Zurück zur Produktübersicht">← Zurück</a>
-            <a href="cart.html" class="cart-link" aria-label="Warenkorb anzeigen">🛒 Warenkorb</a>
+            <a href="cart.html" class="cart-link" aria-label="Zum Warenkorb, aktuell 0 Artikel">🛒 Warenkorb</a>
         </nav>
     </header>
 
     <main id="main">
         <article class="product-detail">
             <h1>Nintendo Entertainment System (NES) Konsole</h1>
-
+            
             <div class="gallery" role="region" aria-label="Produktbilder">
-                <img id="mainImage" 
-                     class="main-image" 
-                     src="img/product2_1.JPEG" 
-                     alt="Frontansicht der NES Konsole mit Power und Reset Knöpfen"
-                     width="400" 
-                     height="300">
+                <div class="main-image-container">
+                    <img id="mainImage" 
+                         class="main-image" 
+                         src="img/product2_1.JPEG" 
+                         alt="NES Konsole Frontansicht - Klassische graue Konsole mit Power und Reset Knöpfen"
+                         width="400" 
+                         height="300">
+                </div>
                 
                 <div class="thumbnails" role="group" aria-label="Bildauswahl">
                     <button class="thumb-button" 
-                            onclick="changeImage('img/product2_1.JPEG', 'Frontansicht der NES Konsole')" 
+                            onclick="changeImage('img/product2_1.JPEG', 'NES Konsole Frontansicht')"
                             aria-label="Zeige Frontansicht">
                         <img src="img/product2_1.JPEG" 
                              alt="" 
@@ -39,7 +41,7 @@
                              height="75">
                     </button>
                     <button class="thumb-button" 
-                            onclick="changeImage('img/product2_2.JPEG', 'Rückansicht der NES Konsole')" 
+                            onclick="changeImage('img/product2_2.JPEG', 'NES Konsole Rückansicht mit Anschlüssen')"
                             aria-label="Zeige Rückansicht">
                         <img src="img/product2_2.JPEG" 
                              alt="" 
@@ -47,7 +49,7 @@
                              height="75">
                     </button>
                     <button class="thumb-button" 
-                            onclick="changeImage('img/product2_3.JPEG', 'Seitenansicht der NES Konsole')" 
+                            onclick="changeImage('img/product2_3.JPEG', 'NES Konsole Seitenansicht')"
                             aria-label="Zeige Seitenansicht">
                         <img src="img/product2_3.JPEG" 
                              alt="" 
@@ -57,26 +59,30 @@
                 </div>
             </div>
 
-            <div class="product-info">
+            <section class="product-info">
                 <div class="description">
                     <h2>Produktbeschreibung</h2>
-                    <p>Erlebe Gaming-Nostalgie pur mit dem Nintendo Entertainment System (NES) – der Konsole, 
-                       die Videospiele revolutionierte! Mit seinen ikonischen 8-Bit-Spielen, dem klassischen 
-                       rechteckigen Design und einer riesigen Bibliothek an unvergesslichen Titeln bietet das 
-                       NES endlosen Spielspaß für Retro-Fans und neue Spieler gleichermaßen.</p>
+                    <p>Die Nintendo Entertainment System (NES) Konsole ist der Klassiker unter den Spielekonsolen. 
+                    Mit ihrem ikonischen Design und der robusten Bauweise bietet sie authentisches Retro-Gaming-Feeling.</p>
                     
                     <h3>Features</h3>
                     <ul>
-                        <li>Legendäre Spiele: Kompatibel mit allen NES-Klassikern</li>
-                        <li>Kultiges Design: Klassische grau-schwarze Optik</li>
-                        <li>Einfache Bedienung: Plug & Play Funktionalität</li>
-                        <li>Anschlussmöglichkeiten: TV-Ausgang und Controller-Ports</li>
+                        <li>Originale NES-Konsole mit zwei Controller-Anschlüssen</li>
+                        <li>Unterstützt alle original NES-Spiele</li>
+                        <li>Inkl. AV-Kabel für TV-Anschluss</li>
+                        <li>Power und Reset Knöpfe</li>
+                        <li>Kultiges grau-schwarzes Design</li>
                     </ul>
                 </div>
 
                 <div class="purchase-info" aria-live="polite">
-                    <p class="price">Preis: <span class="amount">80,00 €</span></p>
-                    <p class="stock-status limited" role="status">Nur noch wenige verfügbar</p>
+                    <div class="stock-status limited" role="status">
+                        <span>Nur noch wenige verfügbar</span>
+                    </div>
+                    
+                    <div class="price-info">
+                        <p class="price">Preis: <span class="amount">80,00 €</span></p>
+                    </div>
                     
                     <form class="add-to-cart-form" onsubmit="event.preventDefault(); addToCart(2, getQuantity());">
                         <div class="form-group">
@@ -89,10 +95,10 @@
                                    value="1"
                                    aria-label="Wählen Sie die gewünschte Anzahl (1-100)">
                         </div>
-                        <button type="submit" class="button primary">In den Warenkorb</button>
+                        <button type="submit" class="button primary">In den Warenkorb legen</button>
                     </form>
                 </div>
-            </div>
+            </section>
         </article>
     </main>
 

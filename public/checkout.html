@@ -1,134 +1,153 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-        <title>Checkout | Retro Gaming Shop</title>
-        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Checkout | Retro Gaming Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
 
+    <header>
         <nav aria-label="Hauptnavigation">
-            <a href="cart.html" class="cart-link" aria-label="Zum Warenkorb">🛒 Warenkorb</a>
+            <a href="cart.html" class="back-link" aria-label="Zurück zum Warenkorb">← Zurück zum Warenkorb</a>
         </nav>
+    </header>
 
-        <main id="main">
-            <h1>Bestellung abschließen</h1>
+    <main id="main">
+        <h1>Bestellung abschließen</h1>
 
-            <form id="checkout-form" novalidate>
-                <fieldset>
-                    <legend>Versandadresse</legend>
+        <form id="checkout-form" novalidate>
+            <div id="form-progress" class="sr-only" aria-live="polite"></div>
+
+            <fieldset>
+                <legend>Versandadresse</legend>
+                
+                <div class="form-group">
+                    <label for="name">Name <span class="required" aria-label="Pflichtfeld">*</span></label>
+                    <input type="text" 
+                           id="name" 
+                           name="name" 
+                           required 
+                           aria-required="true"
+                           aria-describedby="name-error"
+                           autocomplete="name">
+                    <div id="name-error" class="error-message" role="alert"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Adresse <span class="required" aria-label="Pflichtfeld">*</span></label>
+                    <input type="text" 
+                           id="address" 
+                           name="address" 
+                           required 
+                           aria-required="true"
+                           aria-describedby="address-error"
+                           autocomplete="street-address">
+                    <div id="address-error" class="error-message" role="alert"></div>
+                </div>
+                
+                <div class="form-row">
                     <div class="form-group">
-                        <label for="name">Name: <span class="required" aria-label="Pflichtfeld">*</span></label>
-                        <input type="text" 
-                               id="name" 
-                               name="name" 
-                               required 
-                               aria-required="true"
-                               autocomplete="name">
-                        <div id="name-error" class="error-message" role="alert"></div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="address">Adresse: <span class="required" aria-label="Pflichtfeld">*</span></label>
-                        <input type="text" 
-                               id="address" 
-                               name="address" 
-                               required 
-                               aria-required="true"
-                               autocomplete="street-address">
-                        <div id="address-error" class="error-message" role="alert"></div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="zip">PLZ: <span class="required" aria-label="Pflichtfeld">*</span></label>
+                        <label for="zip">PLZ <span class="required" aria-label="Pflichtfeld">*</span></label>
                         <input type="text" 
                                id="zip" 
                                name="zip" 
                                required 
                                aria-required="true"
-                               autocomplete="postal-code"
+                               aria-describedby="zip-error"
                                pattern="[0-9]{5}"
-                               minlength="5"
-                               maxlength="5">
+                               maxlength="5"
+                               autocomplete="postal-code">
                         <div id="zip-error" class="error-message" role="alert"></div>
                     </div>
 
                     <div class="form-group">
-                        <label for="city">Stadt: <span class="required" aria-label="Pflichtfeld">*</span></label>
+                        <label for="city">Stadt <span class="required" aria-label="Pflichtfeld">*</span></label>
                         <input type="text" 
                                id="city" 
                                name="city" 
                                required 
                                aria-required="true"
+                               aria-describedby="city-error"
                                autocomplete="address-level2">
                         <div id="city-error" class="error-message" role="alert"></div>
                     </div>
-                </fieldset>
+                </div>
+            </fieldset>
 
-                <fieldset>
-                    <legend>Zahlungsinformationen</legend>
-                    <div class="form-group">
-                        <label for="card-number">Kreditkartennummer: <span class="required" aria-label="Pflichtfeld">*</span></label>
-                        <input type="text" 
-                               id="card-number" 
-                               name="card-number" 
-                               required 
-                               aria-required="true"
-                               autocomplete="cc-number"
-                               pattern="[0-9]{16}"
-                               minlength="16"
-                               maxlength="16">
-                        <div id="card-number-error" class="error-message" role="alert"></div>
-                    </div>
+            <fieldset>
+                <legend>Zahlungsinformationen</legend>
+                
+                <div class="form-group">
+                    <label for="card-number">Kreditkartennummer <span class="required" aria-label="Pflichtfeld">*</span></label>
+                    <input type="text" 
+                           id="card-number" 
+                           name="card-number" 
+                           required 
+                           aria-required="true"
+                           aria-describedby="card-number-error"
+                           autocomplete="cc-number"
+                           pattern="[0-9]{16}"
+                           maxlength="16">
+                    <div id="card-number-error" class="error-message" role="alert"></div>
+                </div>
 
+                <div class="form-row">
                     <div class="form-group">
-                        <label for="expiry">Ablaufdatum (MM/YY): <span class="required" aria-label="Pflichtfeld">*</span></label>
+                        <label for="expiry">Ablaufdatum <span class="required" aria-label="Pflichtfeld">*</span></label>
                         <input type="text" 
                                id="expiry" 
                                name="expiry" 
                                required 
                                aria-required="true"
+                               aria-describedby="expiry-error"
                                autocomplete="cc-exp"
                                pattern="(0[1-9]|1[0-2])\/([0-9]{2})"
-                               placeholder="MM/YY">
+                               placeholder="MM/YY"
+                               maxlength="5">
                         <div id="expiry-error" class="error-message" role="alert"></div>
                     </div>
 
                     <div class="form-group">
-                        <label for="cvv">CVV: <span class="required" aria-label="Pflichtfeld">*</span></label>
+                        <label for="cvv">CVV <span class="required" aria-label="Pflichtfeld">*</span></label>
                         <input type="text" 
                                id="cvv" 
                                name="cvv" 
                                required 
                                aria-required="true"
+                               aria-describedby="cvv-error"
                                autocomplete="cc-csc"
                                pattern="[0-9]{3,4}"
-                               minlength="3"
                                maxlength="4">
                         <div id="cvv-error" class="error-message" role="alert"></div>
                     </div>
-                </fieldset>
-
-                <div class="form-actions">
-                    <button type="submit" class="button primary">Bestellung abschließen</button>
-                    <a href="cart.html" class="button secondary">Zurück zum Warenkorb</a>
                 </div>
-            </form>
+            </fieldset>
 
-            <div id="form-feedback" role="alert" aria-live="polite"></div>
-        </main>
+            <div class="order-summary" aria-live="polite">
+                <h2>Bestellübersicht</h2>
+                <ul id="order-items" role="list"></ul>
+                <p class="total">Gesamtsumme: <span id="total-amount">0,00 €</span></p>
+            </div>
 
-        <footer>
-            <nav aria-label="Footer Navigation">
-                <a href="index.html">Startseite</a>
-                <a href="datenschutz.html">Datenschutz</a>
-                <a href="impressum.html">Impressum</a>
-            </nav>
-        </footer>
+            <div class="form-actions">
+                <button type="submit" class="button primary">Bestellung abschließen</button>
+                <a href="cart.html" class="button secondary">Zurück zum Warenkorb</a>
+            </div>
+        </form>
+    </main>
 
-        <script src="script.js"></script>
-    </body>
+    <footer>
+        <nav aria-label="Footer Navigation">
+            <a href="datenschutz.html">Datenschutz</a>
+            <a href="impressum.html">Impressum</a>
+        </nav>
+    </footer>
+
+    <div id="notifications" role="status" aria-live="polite"></div>
+    <script src="script.js"></script>
+</body>
 </html>

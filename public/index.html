@@ -12,7 +12,7 @@
 
     <header>
         <nav aria-label="Hauptnavigation">
-            <a href="cart.html" class="cart-link" aria-label="Warenkorb anzeigen">🛒 Warenkorb</a>
+            <a href="cart.html" class="cart-link" aria-label="Zum Warenkorb, aktuell 0 Artikel">🛒 Warenkorb</a>
         </nav>
     </header>
 
@@ -20,50 +20,59 @@
         <h1>Willkommen im Retro Gaming Shop</h1>
         
         <section class="products" aria-label="Produktübersicht">
-            <div class="product-box">
-                <h2>NES Controller</h2>
-                <a href="product1.html" class="product-link">
+            <article class="product-box">
+                <h2 id="product1-heading">NES Controller</h2>
+                <a href="product1.html" 
+                   class="product-link"
+                   aria-labelledby="product1-heading"
+                   aria-describedby="product1-desc">
                     <img src="img/product1_1.JPEG" 
-                         alt="Nintendo Entertainment System Controller" 
+                         alt="Nintendo Entertainment System (NES) Controller" 
                          width="100" 
                          height="100">
-                    <span class="more-info">Mehr Informationen zum NES Controller</span>
+                    <span id="product1-desc" class="more-info">Zum NES Controller für 25,00 €</span>
                 </a>
                 <div class="product-status" aria-live="polite">
                     <p class="price">25,00 €</p>
                     <p class="stock-status available">Auf Lager</p>
                 </div>
-            </div>
+            </article>
 
-            <div class="product-box">
-                <h2>NES Konsole</h2>
-                <a href="product2.html" class="product-link">
+            <article class="product-box">
+                <h2 id="product2-heading">NES Konsole</h2>
+                <a href="product2.html" 
+                   class="product-link"
+                   aria-labelledby="product2-heading"
+                   aria-describedby="product2-desc">
                     <img src="img/product2_1.JPEG" 
                          alt="Nintendo Entertainment System Konsole" 
                          width="100" 
                          height="100">
-                    <span class="more-info">Mehr Informationen zur NES Konsole</span>
+                    <span id="product2-desc" class="more-info">Zur NES Konsole für 80,00 €</span>
                 </a>
                 <div class="product-status" aria-live="polite">
                     <p class="price">80,00 €</p>
-                    <p class="stock-status limited">Wenige verfügbar</p>
+                    <p class="stock-status limited">Nur noch wenige verfügbar</p>
                 </div>
-            </div>
+            </article>
 
-            <div class="product-box">
-                <h2>Nintendo Game Boy</h2>
-                <a href="product3.html" class="product-link">
+            <article class="product-box">
+                <h2 id="product3-heading">Nintendo Game Boy (DMG-01)</h2>
+                <a href="product3.html" 
+                   class="product-link"
+                   aria-labelledby="product3-heading"
+                   aria-describedby="product3-desc">
                     <img src="img/product3_1.JPEG" 
-                         alt="Nintendo Game Boy (DMG-01)" 
+                         alt="Nintendo Game Boy in klassischem Grau" 
                          width="100" 
                          height="100">
-                    <span class="more-info">Mehr Informationen zum Game Boy</span>
+                    <span id="product3-desc" class="more-info">Zum Game Boy für 40,00 €</span>
                 </a>
                 <div class="product-status" aria-live="polite">
                     <p class="price">40,00 €</p>
                     <p class="stock-status unavailable">Ausverkauft</p>
                 </div>
-            </div>
+            </article>
         </section>
     </main>
 
@@ -74,6 +83,7 @@
         </nav>
     </footer>
 
+    <div id="notifications" role="status" aria-live="polite"></div>
     <script src="script.js"></script>
 </body>
 </html>

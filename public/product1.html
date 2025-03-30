@@ -13,25 +13,27 @@
     <header>
         <nav aria-label="Hauptnavigation">
             <a href="index.html" class="back-link" aria-label="Zurück zur Produktübersicht">← Zurück</a>
-            <a href="cart.html" class="cart-link" aria-label="Warenkorb anzeigen">🛒 Warenkorb</a>
+            <a href="cart.html" class="cart-link" aria-label="Zum Warenkorb, aktuell 0 Artikel">🛒 Warenkorb</a>
         </nav>
     </header>
 
     <main id="main">
         <article class="product-detail">
             <h1>Nintendo Entertainment System (NES) Controller</h1>
-
+            
             <div class="gallery" role="region" aria-label="Produktbilder">
-                <img id="mainImage" 
-                     class="main-image" 
-                     src="img/product1_1.JPEG" 
-                     alt="Frontansicht des NES Controllers mit D-Pad, Select, Start und A/B Buttons"
-                     width="400" 
-                     height="300">
+                <div class="main-image-container">
+                    <img id="mainImage" 
+                         class="main-image" 
+                         src="img/product1_1.JPEG" 
+                         alt="NES Controller Frontansicht - Klassischer Controller mit D-Pad, Select, Start und A/B Buttons"
+                         width="400" 
+                         height="300">
+                </div>
                 
                 <div class="thumbnails" role="group" aria-label="Bildauswahl">
                     <button class="thumb-button" 
-                            onclick="changeImage('img/product1_1.JPEG', 'Frontansicht des NES Controllers')" 
+                            onclick="changeImage('img/product1_1.JPEG', 'NES Controller Frontansicht')"
                             aria-label="Zeige Frontansicht">
                         <img src="img/product1_1.JPEG" 
                              alt="" 
@@ -39,7 +41,7 @@
                              height="75">
                     </button>
                     <button class="thumb-button" 
-                            onclick="changeImage('img/product1_2.JPEG', 'Seitenansicht des NES Controllers')" 
+                            onclick="changeImage('img/product1_2.JPEG', 'NES Controller Seitenansicht')"
                             aria-label="Zeige Seitenansicht">
                         <img src="img/product1_2.JPEG" 
                              alt="" 
@@ -47,8 +49,8 @@
                              height="75">
                     </button>
                     <button class="thumb-button" 
-                            onclick="changeImage('img/product1_3.JPEG', 'Rückseite des NES Controllers')" 
-                            aria-label="Zeige Rückseite">
+                            onclick="changeImage('img/product1_3.JPEG', 'NES Controller Kabelansicht')"
+                            aria-label="Zeige Kabelansicht">
                         <img src="img/product1_3.JPEG" 
                              alt="" 
                              width="100" 
@@ -57,25 +59,32 @@
                 </div>
             </div>
 
-            <div class="product-info">
+            <section class="product-info">
                 <div class="description">
                     <h2>Produktbeschreibung</h2>
-                    <p>Der Nintendo Entertainment System (NES) Controller ist die perfekte Ergänzung für Retro-Gaming-Fans! 
-                       Mit seinem ikonischen rechteckigen Design, den zwei Action-Buttons (A & B), dem präzisen Steuerkreuz 
-                       und den Start- und Select-Tasten bietet er ein authentisches NES-Spielerlebnis.</p>
+                    <p>Der originale Nintendo Entertainment System (NES) Controller ist ein Klassiker des Retro-Gamings. 
+                       Mit dem präzisen Steuerkreuz, den reaktionsschnellen A/B-Buttons und den praktischen Start/Select-Tasten 
+                       bietet er das authentische NES-Spielerlebnis.</p>
                     
                     <h3>Features</h3>
                     <ul>
-                        <li>Originalgetreues Design: Klassisches, kantiges Layout für echtes 8-Bit-Feeling</li>
-                        <li>Präzise Steuerung: Robuste Tasten für schnelle Reaktionen in actionreichen Spielen</li>
-                        <li>Ergonomisch & kompakt: Perfekt für lange Gaming-Sessions</li>
-                        <li>Plug & Play: Einfach mit dem NES oder kompatiblen Geräten verbinden und loslegen</li>
+                        <li>Originalgetreues Design: Klassisches rechteckiges Layout</li>
+                        <li>Präzises Steuerkreuz für exakte Kontrolle</li>
+                        <li>Responsive A und B Action-Buttons</li>
+                        <li>Start und Select Tasten</li>
+                        <li>Langlebige, robuste Konstruktion</li>
+                        <li>Originaler Controller-Anschluss</li>
                     </ul>
                 </div>
 
                 <div class="purchase-info" aria-live="polite">
-                    <p class="price">Preis: <span class="amount">25,00 €</span></p>
-                    <p class="stock-status available" role="status">Auf Lager</p>
+                    <div class="stock-status available" role="status">
+                        <span>Auf Lager</span>
+                    </div>
+                    
+                    <div class="price-info">
+                        <p class="price">Preis: <span class="amount">25,00 €</span></p>
+                    </div>
                     
                     <form class="add-to-cart-form" onsubmit="event.preventDefault(); addToCart(1, getQuantity());">
                         <div class="form-group">
@@ -88,10 +97,10 @@
                                    value="1"
                                    aria-label="Wählen Sie die gewünschte Anzahl (1-100)">
                         </div>
-                        <button type="submit" class="button primary">In den Warenkorb</button>
+                        <button type="submit" class="button primary">In den Warenkorb legen</button>
                     </form>
                 </div>
-            </div>
+            </section>
         </article>
     </main>
 
