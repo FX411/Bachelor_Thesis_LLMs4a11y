@@ -2,8 +2,8 @@ body {
     font-family: 'Press Start 2P', cursive;
     font-size: 16px; /* erhöhte Schriftgröße */
     text-align: center;
-    background-color: #ee1c25;
-    color: #eadc6f;
+    background-color: #1a1a1a; /* Dunklerer Hintergrund für besseren Kontrast */
+    color: #f0f0f0;      /* Hellerer Text für besseren Kontrast */
     line-height: 1.5; /* verbesserte Zeilenhöhe */
 }
 
@@ -60,13 +60,14 @@ body {
     font-weight: bold;
     text-decoration: none;
     color: #ffcc00;
+    background-color: #000; /* Schwarzer Hintergrund für die Produktboxen */
 }
 
 .cart-link {
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: #ff0000;
+    background-color: #d50000; /* Dunkleres Rot für besseren Kontrast zum weißen Text */
     color: white;
     padding: 10px 15px;
     text-decoration: none;
@@ -104,7 +105,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #111;
+    background-color: #222; /* Dunklerer Hintergrund für bessere Kontraste */
     padding: 20px;
     border: 3px solid #ffcc00;
 }
@@ -150,8 +151,8 @@ body {
 
 button, input[type="number"] {
     font-family: 'Press Start 2P', cursive; /* Schriftart für Buttons */
-    background-color: #ffcc00;
-    color: #000;
+    background-color: #f9a825; /* Goldgelb mit ausreichendem Kontrast zu schwarzem Text*/
+    color: #000;  
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
