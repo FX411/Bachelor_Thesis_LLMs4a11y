@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "gemini_report-website"
+        IMAGE_NAME = "gemini_manual-website"
         IMAGE_TAG = "latest"
-        CONTAINER_NAME = "gemini_report-website"
-        NETWORK_NAME = "gemini_report-network"
+        CONTAINER_NAME = "gemini_manual-website"
+        NETWORK_NAME = "gemini_manual-network"
         REPORTS_DIR = "reports"
         FIRST_REPORT="pa11y_report_${env.BUILD_NUMBER}.json"
     }
@@ -53,13 +53,13 @@ pipeline {
                 script {
                     sh '''
                         echo "Baue den pa11y-ci Container..."
-                        docker build -t pa11y-ci-testergemini_report- -f Dockerfile.pa11y .
+                        docker build -t pa11y-ci-tester-gemini_manual -f Dockerfile.pa11y .
 
                         echo "Erstelle Reports-Ordner..."
                         mkdir -p ${REPORTS_DIR}
 
                         echo "Starte Accessibility-Tests..."
-                        docker run --rm --network=${NETWORK_NAME} -v $PWD/${REPORTS_DIR}:/app/reports pa11y-ci-testergemini_report- || true
+                        docker run --rm --network=${NETWORK_NAME} -v $PWD/${REPORTS_DIR}:/app/reports pa11y-ci-tester-gemini_manual || true
 
                         echo "Speichere den WCAG-Report..."
                         mv ${REPORTS_DIR}/pa11y-report.json ${REPORTS_DIR}/${FIRST_REPORT}
