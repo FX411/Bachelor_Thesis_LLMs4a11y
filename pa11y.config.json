@@ -11,11 +11,11 @@
     ]
   },
   "urls": [
-    "http://main-website:3333/product1.html",
-    "http://main-website:3333/product2.html",
-    "http://main-website:3333/product3.html",
-    "http://main-website:3333",
-    "http://main-website:3333/cart.html",
-    "http://main-website:3333/checkout.html"
+    "http://main-website:4201/product1.html",
+    "http://main-website:4201/product2.html",
+    "http://main-website:4201/product3.html",
+    "http://main-website:4201",
+    "http://main-website:4201/cart.html",
+    "http://main-website:4201/checkout.html"
   ]
 }

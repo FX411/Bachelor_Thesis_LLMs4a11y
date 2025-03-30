@@ -39,7 +39,7 @@ pipeline {
                         docker rm ${CONTAINER_NAME} || true
 
                         echo "Starte neuen Website-Container..."
-                        docker run -d --network=${NETWORK_NAME} -p 3333:3333 --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}
+                        docker run -d --network=${NETWORK_NAME} -p 4201:4201 --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}
 
                         echo "Warte auf Server-Start..."
                         sleep 10
