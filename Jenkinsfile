@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "main-website"
+        IMAGE_NAME = "claude_manual-website"
         IMAGE_TAG = "latest"
-        CONTAINER_NAME = "main-website"
-        NETWORK_NAME = "main-network"
+        CONTAINER_NAME = "claude_manual-website"
+        NETWORK_NAME = "claude_manual-network"
         REPORTS_DIR = "reports"
         FIRST_REPORT="pa11y_report_${env.BUILD_NUMBER}.json"
     }
@@ -39,7 +39,7 @@ pipeline {
                         docker rm ${CONTAINER_NAME} || true
 
                         echo "Starte neuen Website-Container..."
-                        docker run -d --network=${NETWORK_NAME} -p 3333:3333 --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}
+                        docker run -d --network=${NETWORK_NAME} -p 4100:4100 --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}
 
                         echo "Warte auf Server-Start..."
                         sleep 10
@@ -53,13 +53,13 @@ pipeline {
                 script {
                     sh '''
                         echo "Baue den pa11y-ci Container..."
-                        docker build -t pa11y-ci-tester-main -f Dockerfile.pa11y .
+                        docker build -t pa11y-ci-tester-claude_manual -f Dockerfile.pa11y .
 
                         echo "Erstelle Reports-Ordner..."
                         mkdir -p ${REPORTS_DIR}
 
                         echo "Starte Accessibility-Tests..."
-                        docker run --rm --network=${NETWORK_NAME} -v $PWD/${REPORTS_DIR}:/app/reports pa11y-ci-tester-main || true
+                        docker run --rm --network=${NETWORK_NAME} -v $PWD/${REPORTS_DIR}:/app/reports pa11y-ci-tester-claude_manual || true
 
                         echo "Speichere den WCAG-Report..."
                         mv ${REPORTS_DIR}/pa11y-report.json ${REPORTS_DIR}/${FIRST_REPORT}
