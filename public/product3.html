@@ -1,47 +1,112 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-        <title>Produkt 3</title>
-        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <a href="cart.html" class="cart-link">🛒 Warenkorb</a>
-        <h1>Nintendo Game Boy (DMG-01)</h1>
-        <div class="gallery" data-images="img/product3_1.JPEG,img/product3_2.JPEG,img/product3_3.JPEG">
-            <img id="mainImage" class="main-image" src="img/product3_1.JPEG">
-            <div class="thumbnails">
-                <img src="img/product3_1.JPEG">
-                <img src="img/product3_2.JPEG">
-                <img src="img/product3_3.JPEG">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Game Boy | Retro Gaming Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+
+    <header>
+        <nav aria-label="Hauptnavigation">
+            <a href="index.html" class="back-link" aria-label="Zurück zur Produktübersicht">← Zurück</a>
+            <a href="cart.html" class="cart-link" aria-label="Warenkorb anzeigen">🛒 Warenkorb</a>
+        </nav>
+    </header>
+
+    <main id="main">
+        <article class="product-detail">
+            <h1>Nintendo Game Boy (DMG-01)</h1>
+
+            <div class="gallery" role="region" aria-label="Produktbilder">
+                <img id="mainImage" 
+                     class="main-image" 
+                     src="img/product3_1.JPEG" 
+                     alt="Frontansicht des klassischen Game Boy mit Bildschirm, D-Pad und Buttons"
+                     width="400" 
+                     height="300">
+                
+                <div class="thumbnails" role="group" aria-label="Bildauswahl">
+                    <button class="thumb-button" 
+                            onclick="changeImage('img/product3_1.JPEG', 'Frontansicht des Game Boy')" 
+                            aria-label="Zeige Frontansicht">
+                        <img src="img/product3_1.JPEG" 
+                             alt="" 
+                             width="100" 
+                             height="75">
+                    </button>
+                    <button class="thumb-button" 
+                            onclick="changeImage('img/product3_2.JPEG', 'Rückseite des Game Boy')" 
+                            aria-label="Zeige Rückseite">
+                        <img src="img/product3_2.JPEG" 
+                             alt="" 
+                             width="100" 
+                             height="75">
+                    </button>
+                    <button class="thumb-button" 
+                            onclick="changeImage('img/product3_3.JPEG', 'Seitenansicht des Game Boy')" 
+                            aria-label="Zeige Seitenansicht">
+                        <img src="img/product3_3.JPEG" 
+                             alt="" 
+                             width="100" 
+                             height="75">
+                    </button>
+                </div>
             </div>
-        </div>
-        <p>Nintendo Game Boy (DMG-01) – Der Klassiker unter den Handheld-Konsolen! 🎮<br>
-            Tauche ein in die Welt des Nintendo Game Boy (DMG-01) – dem legendären Handheld, der mobiles Gaming revolutionierte! Mit seinem unverwechselbaren grauen Gehäuse, dem kontrastreichen 8-Bit-Display und einer riesigen Auswahl an ikonischen Spielen wurde der Game Boy zur meistverkauften Handheld-Konsole seiner Zeit.<br><br>
-            
-            Highlights des Game Boy (DMG-01):<br>
-            ✅ Kultiges Design: Klassische graue Optik mit einem monochromen LCD-Display.<br>
-            ✅ Riesige Spielebibliothek: Erlebe Klassiker wie Tetris, Super Mario Land und The Legend of Zelda: Link’s Awakening.<br>
-            ✅ Lange Akkulaufzeit: Bis zu 30 Stunden Spielspaß mit nur vier AA-Batterien!<br>
-            ✅ Kompakt & robust: Perfekt für unterwegs – der Game Boy ist bekannt für seine Langlebigkeit.<br>
-            ✅ Kopfhöreranschluss: Genieße 8-Bit-Soundeffekte und Musik mit Kopfhörern für das volle Retro-Erlebnis.<br><br>
-            
-            Erlebe die Magie des Game Boy (DMG-01) und genieße zeitlose Gaming-Klassiker – egal wann, egal wo!<br><br>
-            
-            🔹 Jetzt im Shop erhältlich – hol dir den Handheld, mit dem alles begann! 🎮🔥</p>
-        <p style="color: red;">Bestand</p> 
-        <p>Preis: 40.00€</p>
-        <label for="numberInput">Anzahl:</label>
-        <input type="number" id="numberInput" name="numberInput" min="0" max="100">
-        <button onclick="addToCart(3,getQuantity())">In den Warenkorb</button>
-        <a href="index.html">Zurück</a>
-        <script>
-            function changeImage(src) {
-                document.getElementById('mainImage').src = src;
-            }
-        </script>
-        <script src="script.js"></script>
-    </body>
+
+            <div class="product-info">
+                <div class="description">
+                    <h2>Produktbeschreibung</h2>
+                    <p>Tauche ein in die Welt des Nintendo Game Boy (DMG-01) – dem legendären Handheld, 
+                       der mobiles Gaming revolutionierte! Mit seinem unverwechselbaren grauen Gehäuse, 
+                       dem kontrastreichen 8-Bit-Display und einer riesigen Auswahl an ikonischen Spielen 
+                       wurde der Game Boy zur meistverkauften Handheld-Konsole seiner Zeit.</p>
+                    
+                    <h3>Features</h3>
+                    <ul>
+                        <li>Kultiges Design: Klassische graue Optik mit monochromen LCD-Display</li>
+                        <li>Lange Akkulaufzeit: Bis zu 30 Stunden mit vier AA-Batterien</li>
+                        <li>Kopfhöreranschluss: Für privates Spielvergnügen</li>
+                        <li>Robuste Konstruktion: Bekannt für seine Langlebigkeit</li>
+                        <li>Kompatibel mit der gesamten Game Boy Spielebibliothek</li>
+                    </ul>
+                </div>
+
+                <div class="purchase-info" aria-live="polite">
+                    <p class="price">Preis: <span class="amount">40,00 €</span></p>
+                    <p class="stock-status unavailable" role="status">Derzeit nicht verfügbar</p>
+                    
+                    <form class="add-to-cart-form" onsubmit="event.preventDefault(); addToCart(3, getQuantity());">
+                        <div class="form-group">
+                            <label for="numberInput">Anzahl:</label>
+                            <input type="number" 
+                                   id="numberInput" 
+                                   name="quantity" 
+                                   min="1" 
+                                   max="100" 
+                                   value="1"
+                                   aria-label="Wählen Sie die gewünschte Anzahl (1-100)"
+                                   disabled>
+                        </div>
+                        <button type="submit" class="button primary" disabled>Ausverkauft</button>
+                        <p class="notification-text">Benachrichtigen Sie mich, wenn der Artikel wieder verfügbar ist.</p>
+                    </form>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <nav aria-label="Footer Navigation">
+            <a href="datenschutz.html">Datenschutz</a>
+            <a href="impressum.html">Impressum</a>
+        </nav>
+    </footer>
+
+    <div id="notifications" role="status" aria-live="polite"></div>
+    <script src="script.js"></script>
+</body>
 </html>
