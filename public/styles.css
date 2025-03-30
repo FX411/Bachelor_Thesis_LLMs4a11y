@@ -1,9 +1,9 @@
 body {
     font-family: 'Press Start 2P', cursive;
-    font-size: 8px;
+    font-size: 1rem;
     text-align: center;
-    background-color: #ee1c25;
-    color: #eadc6f;
+    background-color: #000000;
+    color: #ffff00;
 }
 
 *:focus {
