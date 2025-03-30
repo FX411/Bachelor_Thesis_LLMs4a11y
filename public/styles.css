@@ -1,17 +1,35 @@
 body {
     font-family: 'Press Start 2P', cursive;
-    font-size: 8px;
+    font-size: 16px; /* erhöhte Schriftgröße */
     text-align: center;
     background-color: #ee1c25;
     color: #eadc6f;
+    line-height: 1.5; /* verbesserte Zeilenhöhe */
 }
 
 *:focus {
-    outline: none !important;
+    outline: 2px solid #ffcc00 !important; /* sichtbarer Focus-Style */
 }
+
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #000;
+    color: #fff;
+    padding: 8px;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
 
 .products {
     display: flex;
+    flex-wrap: wrap; /* für kleinere Bildschirme */
     justify-content: space-around;
     margin-top: 20px;
 }
@@ -24,6 +42,16 @@ body {
     width: 30%;
     box-shadow: 5px 5px 10px rgba(255, 204, 0, 0.5);
     font-family: 'Press Start 2P', cursive;
+    margin-bottom: 20px; /* Abstand zwischen den Boxen */
+}
+
+
+.product-box img {
+    display: block;
+    margin: 0 auto; /* Bild zentrieren */
+    max-width: 100%; /* Bild skalieren */
+    height: auto;
+
 }
 
 .product-box a {
@@ -47,14 +75,30 @@ body {
     border: 2px solid #fff;
 }
 
-.cart-link:hover {
-    background-color: #cc0000;
+
+/* hinzugefügt für bessere Lesbarkeit */
+.stock-green { color: green; }
+.stock-yellow { color: yellow; }
+.stock-red { color: red; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
 }
 
-.products a { 
-    display: block; 
-    margin: 10px; 
+.cart-link:hover, .product-box a:hover, button:hover, input[type=number]:hover
+{
+    filter: brightness(85%);
 }
+
+
 
 .gallery {
     display: flex;
@@ -74,9 +118,7 @@ body {
     box-shadow: 4px 4px 8px rgba(255, 204, 0, 0.5);
 }
 
-.gallery img:hover {
-    border: 3px solid #ff0000;
-}
+
 
 .gallery .main-image {
     width: 400px;
@@ -84,4 +126,42 @@ body {
     margin-bottom: 20px;
     border: 3px solid #ffcc00;
     box-shadow: 5px 5px 15px rgba(255, 204, 0, 0.7);
+}
+
+.gallery .thumbnails {
+    display: flex;
+    flex-wrap: wrap; /* für responsive Design */
+    justify-content: center;
+}
+
+
+.thumbnails img {
+    width: 80px;
+    height: auto;
+}
+
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Abstand zwischen Buttons */
+    margin-top: 20px;
+}
+
+button, input[type="number"] {
+    font-family: 'Press Start 2P', cursive; /* Schriftart für Buttons */
+    background-color: #ffcc00;
+    color: #000;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* für bessere visuelle Trennung des Warenkorbs */
+#cart-items li {
+    list-style: none;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ffcc00;
+    padding-bottom: 5px;
 }

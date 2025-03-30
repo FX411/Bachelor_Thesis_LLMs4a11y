@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-        <title>Warenkorb</title>
-        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <h1>Ihr Warenkorb</h1>
-        <ul id="cart-items"></ul>
-        <a href="checkout.html">
-            <button>Zur Kasse</button>
-        </a>
-        <a href="index.html">Weiter einkaufen</a>
-        <script src="script.js"></script>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Warenkorb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+    <h1>Ihr Warenkorb</h1>
+    <main id="main">
+        <ul id="cart-items" aria-labelledby="warenkorb-titel"></ul>
+        <div class="buttons">
+            <a href="checkout.html">
+                <button>Zur Kasse</button>
+            </a>
+            <a href="index.html">Weiter einkaufen</a>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
 </html>

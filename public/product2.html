@@ -1,39 +1,41 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-        <title>Product 2</title>
-        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <a href="cart.html" class="cart-link">🛒 Warenkorb</a>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Produkt 2 - NES Konsole</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+    <a href="cart.html" class="cart-link" aria-label="Warenkorb">�� Warenkorb</a>
+    <main id="main">
         <h1>Nintendo Entertainment System - NES</h1>
         <div class="gallery" data-images="img/product2_1.JPEG,img/product2_2.JPEG,img/product2_3.JPEG">
-            <img id="mainImage" class="main-image" src="img/product2_1.JPEG">
+            <img id="mainImage" class="main-image" src="img/product2_1.JPEG" alt="NES Konsole">
             <div class="thumbnails">
-                <img src="img/product2_1.JPEG">
-                <img src="img/product2_2.JPEG">
-                <img src="img/product2_3.JPEG">
+                <img src="img/product2_1.JPEG" alt="NES Konsole Vorderansicht" onclick="changeImage('img/product2_1.JPEG')">
+                <img src="img/product2_2.JPEG" alt="NES Konsole Rückseite" onclick="changeImage('img/product2_2.JPEG')">
+                <img src="img/product2_3.JPEG" alt="NES Konsole Seite" onclick="changeImage('img/product2_3.JPEG')">
             </div>
         </div>
-        <p>Nintendo Entertainment System (NES) – Die Legende der 8-Bit-Ära! 🎮<br>
+        <p>Nintendo Entertainment System (NES) – Die Legende der 8-Bit-Ära! ��<br>
             Erlebe Gaming-Nostalgie pur mit dem Nintendo Entertainment System (NES) – der Konsole, die Videospiele revolutionierte! Mit seinen ikonischen 8-Bit-Spielen, dem klassischen rechteckigen Controller und einer riesigen Bibliothek an unvergesslichen Titeln bietet das NES endlosen Spielspaß für Retro-Fans und neue Spieler gleichermaßen.<br><br>
-            
+
             Highlights des NES:<br>
-            ✅ Legendäre Spiele: Super Mario Bros., The Legend of Zelda, Metroid und viele mehr!<br>
-            ✅ Kultiges Design: Klassische grau-schwarze Optik mit dem berühmten Cartridge-Slot.<br>
-            ✅ Einfache Bedienung: Plug & Play – einfach anschließen und loszocken!<br>
-            ✅ Retro-Feeling: Original NES-Controller für authentische Spielerlebnisse.<br><br>
-            
+            <ul>
+                <li>Legendäre Spiele: Super Mario Bros., The Legend of Zelda, Metroid und viele mehr!</li>
+                <li>Kultiges Design: Klassische grau-schwarze Optik mit dem berühmten Cartridge-Slot.</li>
+                <li>Einfache Bedienung: Plug & Play – einfach anschließen und loszocken!</li>
+                <li>Retro-Feeling: Original NES-Controller für authentische Spielerlebnisse.</li>
+            </ul>
             Tauche ein in die goldene Ära des Gamings und erlebe, warum das NES eine der bedeutendsten Konsolen aller Zeiten ist!<br><br>
-            
-            🔹 Jetzt im Shop erhältlich – hol dir das NES und spiele Gaming-Geschichte! 🎮🔥</p>
-        <p style="color: yellow;">Bestand</p> 
+        </p>
+        <p class="stock-yellow">Wenig auf Lager</p>
         <p>Preis: 80.00€</p>
         <label for="numberInput">Anzahl:</label>
-        <input type="number" id="numberInput" name="numberInput" min="0" max="100">
+        <input type="number" id="numberInput" name="numberInput" min="0" max="100" value="1">
         <button onclick="addToCart(2,getQuantity())">In den Warenkorb</button>
         <a href="index.html">Zurück</a>
         <script>
@@ -42,5 +44,6 @@
             }
         </script>
         <script src="script.js"></script>
-    </body>
+    </main>
+</body>
 </html>

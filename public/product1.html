@@ -3,37 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <title>Produkt 1</title>
+    <title>Produkt 1 - NES Controller</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-    <body>
-        <a href="cart.html" class="cart-link">🛒 Warenkorb</a>
+<body>
+    <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+    <a href="cart.html" class="cart-link" aria-label="Warenkorb">�� Warenkorb</a>
+    <main id="main">
         <h1>Nintendo Entertainment System (NES) Controller</h1>
         <div class="gallery" data-images="img/product1_1.JPEG,img/product1_2.JPEG,img/product1_3.JPEG">
-            <img id="mainImage" class="main-image" src="img/product1_1.JPEG">
+            <img id="mainImage" class="main-image" src="img/product1_1.JPEG" alt="NES Controller">
             <div class="thumbnails">
-                <img src="img/product1_1.JPEG">
-                <img src="img/product1_2.JPEG">
-                <img src="img/product1_3.JPEG">
+                <img src="img/product1_1.JPEG" alt="NES Controller Vorderansicht" onclick="changeImage('img/product1_1.JPEG')">
+                <img src="img/product1_2.JPEG" alt="NES Controller Rückseite" onclick="changeImage('img/product1_2.JPEG')">
+                <img src="img/product1_3.JPEG" alt="NES Controller mit Kabel" onclick="changeImage('img/product1_3.JPEG')">
             </div>
         </div>
-        <p>Nintendo Entertainment System (NES) Controller – Klassischer 8-Bit-Spielspaß! 🎮 <br>
+        <p>Nintendo Entertainment System (NES) Controller – Klassischer 8-Bit-Spielspaß! �� <br>
             Der Nintendo Entertainment System (NES) Controller ist die perfekte Ergänzung für Retro-Gaming-Fans! Mit seinem ikonischen rechteckigen Design, den zwei Action-Buttons (A & B), dem präzisen Steuerkreuz und den Start- und Select-Tasten bietet er ein authentisches NES-Spielerlebnis.<br><br>
-            
+
             Features des NES Controllers:<br>
-            ✅ Originalgetreues Design: Klassisches, kantiges Layout für echtes 8-Bit-Feeling.<br>
-            ✅ Präzise Steuerung: Robuste Tasten für schnelle Reaktionen in actionreichen Spielen.<br>
-            ✅ Ergonomisch & kompakt: Perfekt für lange Gaming-Sessions.<br>
-            ✅ Plug & Play: Einfach mit dem NES oder kompatiblen Geräten verbinden und loslegen.<br><br>
-            
+            <ul>
+                <li>Originalgetreues Design: Klassisches, kantiges Layout für echtes 8-Bit-Feeling.</li>
+                <li>Präzise Steuerung: Robuste Tasten für schnelle Reaktionen in actionreichen Spielen.</li>
+                <li>Ergonomisch & kompakt: Perfekt für lange Gaming-Sessions.</li>
+                <li>Plug & Play: Einfach mit dem NES oder kompatiblen Geräten verbinden und loslegen.</li>
+            </ul>
+
             Erwecke deine Retro-Gaming-Erinnerungen zum Leben und erlebe Klassiker wie Super Mario Bros. oder The Legend of Zelda mit dem originalen Controller!<br><br>
-            
-            🔹 Jetzt im Shop erhältlich – hol dir den NES Controller und zocke wie damals! 🎮🔥</p>
-        <p style="color: green;">Bestand</p>    
+        </p>
+        <p class="stock-green">Auf Lager</p>
         <p>Preis: 25.00€</p>
         <label for="numberInput">Anzahl:</label>
-        <input type="number" id="numberInput" name="numberInput" min="0" max="100">
+        <input type="number" id="numberInput" name="numberInput" min="0" max="100" value="1">
         <button onclick="addToCart(1,getQuantity())">In den Warenkorb</button>
         <a href="index.html">Zurück</a>
         <script>
@@ -42,5 +45,6 @@
             }
         </script>
         <script src="script.js"></script>
-    </body>
+    </main>
+</body>
 </html>
