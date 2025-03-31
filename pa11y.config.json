@@ -11,11 +11,11 @@
     ]
   },
   "urls": [
-    "http://gemini_report-website:4200/product1.html",
-    "http://gemini_report-website:4200/product2.html",
-    "http://gemini_report-website:4200/product3.html",
-    "http://gemini_report-website:4200",
-    "http://gemini_report-website:4200/cart.html",
-    "http://gemini_report-website:4200/checkout.html"
+    "http://gemini_manual-website:4200/product1.html",
+    "http://gemini_manual-website:4200/product2.html",
+    "http://gemini_manual-website:4200/product3.html",
+    "http://gemini_manual-website:4200",
+    "http://gemini_manual-website:4200/cart.html",
+    "http://gemini_manual-website:4200/checkout.html"
   ]
 }
